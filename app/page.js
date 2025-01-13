@@ -1,5 +1,18 @@
-import Image from 'next/image';
+import { cookies } from 'next/headers';
 
-export default function Home() {
-	return <div>Home</div>;
-}
+import UserTest from '@/components/UserTest';
+
+import spotifyService from '@/services/spotify';
+
+const Home = async () => {
+	const cookieStore = await cookies();
+	const accessToken = cookieStore.get('access_token').value;
+	const user = await spotifyService.fetchCurrentUser(accessToken);
+	return (
+		<div>
+			<UserTest user={user} />
+		</div>
+	);
+};
+
+export default Home;
