@@ -14,7 +14,7 @@ const authUrl = `${SPOTIFY_AUTH_URL}?response_type=code&client_id=${SPOTIFY_CLIE
 
 const Login = () => {
 	return (
-		<div className="bg-spotify-black flex-1 flex items-center pl-8 relative">
+		<div className="select-none bg-spotify-black flex-1 flex items-center pl-8 relative">
 			<div
 				className="absolute inset-0 grayscale bg-cover bg-center opacity-40"
 				style={{
@@ -22,6 +22,16 @@ const Login = () => {
 						'url(https://images.unsplash.com/photo-1450044804117-534ccd6e6a3a?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
 				}}
 			></div>
+			<span className="absolute bottom-4 right-4 text-xs font-heading text-gray-400 z-10 opacity-40">
+				Photo by&nbsp;
+				<Link
+					href="https://unsplash.com/@shmabbss?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+					target="_blank"
+					className="hover:text-spotify-green"
+				>
+					Abigail Lynn
+				</Link>
+			</span>
 			<div className="absolute inset-0 bg-black opacity-60"></div>
 
 			<div className="relative z-10 flex flex-col gap-4 h-full justify-center items-start">
