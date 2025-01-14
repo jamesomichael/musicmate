@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 const GET = async (request) => {
 	const { searchParams } = new URL(request.url);
 	const code = searchParams.get('code');
-	const cookieStore = cookies();
+	const cookieStore = await cookies();
 
 	const response = await axios.post(
 		'https://accounts.spotify.com/api/token',
