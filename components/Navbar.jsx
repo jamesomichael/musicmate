@@ -1,16 +1,58 @@
 'use client';
-import React from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import DefaultUserImage from './DefaultUserImage';
 
 import { GrHomeRounded } from 'react-icons/gr';
 import { HiMiniMagnifyingGlass } from 'react-icons/hi2';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 const Navbar = ({ user }) => {
+	const router = useRouter();
+	const [canNavigateBack, setCanNavigateBack] = useState(false);
+	const [canNavigateForward, setCanNavigateForward] = useState(false);
+
+	useEffect(() => {
+		const checkHistory = () => {
+			setCanNavigateBack(window.history.length > 1);
+			setCanNavigateForward(window.history.length > 1);
+		};
+
+		checkHistory();
+		window.addEventListener('popstate', checkHistory);
+
+		return () => {
+			window.removeEventListener('popstate', checkHistory);
+		};
+	}, []);
+
 	return (
 		<div className="h-full bg-black grid grid-cols-3 items-center">
-			<div>Back</div>
+			<div className="p-2 flex justify-start items-center">
+				<IoIosArrowBack
+					onClick={() => {
+						router.back();
+					}}
+					size={30}
+					className={`${
+						canNavigateBack
+							? 'text-gray-300 hover:text-white cursor-pointer'
+							: 'opacity-50 cursor-not-allowed'
+					}`}
+				/>
+				<IoIosArrowForward
+					onClick={() => {
+						router.forward();
+					}}
+					size={30}
+					className={`${
+						canNavigateForward
+							? 'text-gray-300 hover:text-white cursor-pointer'
+							: 'opacity-50 cursor-not-allowed'
+					}`}
+				/>
+			</div>
 			<div className="h-full py-2 flex justify-center items-center gap-1">
 				<div className="h-full aspect-square rounded-full bg-neutral-800 flex justify-center items-center text-gray-300 hover:scale-105 hover:cursor-pointer">
 					<GrHomeRounded size={18} />
