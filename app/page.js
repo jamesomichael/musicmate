@@ -12,10 +12,10 @@ const Home = async () => {
 	return (
 		<Layout>
 			<div className="grid grid-cols-[auto_1fr] h-full gap-4">
-				<div className="bg-blue-300 overflow-y-auto h-full w-80">
+				<div className="bg-blue-300 overflow-y-auto h-full w-80 rounded">
 					LibraryPanel
 				</div>
-				<div className="bg-blue-300 text-6xl overflow-y-scroll h-full">
+				<div className="bg-blue-300 text-6xl overflow-y-scroll h-full rounded">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit.
 					Odit maiores ad assumenda veritatis molestiae esse
 					dignissimos, soluta debitis voluptatum dolor! Repudiandae
