@@ -6,9 +6,9 @@ import Layout from '@/components/Layout';
 import spotifyService from '@/services/spotify';
 
 const Home = async () => {
-	const cookieStore = await cookies();
-	const accessToken = cookieStore.get('access_token').value;
-	const user = await spotifyService.fetchCurrentUser(accessToken);
+	// const cookieStore = await cookies();
+	// const accessToken = cookieStore.get('access_token').value;
+
 	return (
 		<Layout>
 			<div className="grid grid-cols-[auto_1fr] h-full gap-4">
