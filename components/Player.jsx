@@ -138,14 +138,14 @@ const Player = ({ accessToken }) => {
 						}}
 					></div>
 					<div className="flex flex-col justify-center w-full">
-						<span className="font-heading line-clamp-1 leading-5">
+						<span className="text-sm font-heading line-clamp-1 leading-6">
 							{playbackState.item.name}
 						</span>
 						<div className="flex">
 							{playbackState.item.artists.map(
 								(artist, index, array) => (
 									<div
-										className="font-copy text-sm text-gray-300"
+										className="font-copy text-xs text-gray-300"
 										key={artist.id}
 									>
 										<span>{artist.name}</span>
