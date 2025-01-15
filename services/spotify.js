@@ -42,7 +42,7 @@ const fetchUserPlaylists = async (accessToken) => {
 };
 
 const transferPlayback = async (deviceId, accessToken) => {
-	console.log('[transferPlayback] Attempting to transfer playback.');
+	console.log('[transferPlayback] Attempting to transfer playback...');
 
 	if (!deviceId) {
 		console.log('[transferPlayback] No device ID provided.');
@@ -61,4 +61,32 @@ const transferPlayback = async (deviceId, accessToken) => {
 	}
 };
 
-module.exports = { fetchCurrentUser, fetchUserPlaylists, transferPlayback };
+const fetchPlaybackState = async (accessToken) => {
+	console.log('[fetchPlaybackState] Fetching playback state...');
+	try {
+		const response = await axios.get(
+			'https://api.spotify.com/v1/me/player',
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+
+		console.log('[fetchPlaybackState] Playback state retrieved.');
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchPlaybackState] Error fetching playback state:',
+			error
+		);
+		return false;
+	}
+};
+
+module.exports = {
+	fetchCurrentUser,
+	fetchUserPlaylists,
+	transferPlayback,
+	fetchPlaybackState,
+};

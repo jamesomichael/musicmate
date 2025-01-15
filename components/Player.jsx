@@ -1,11 +1,25 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { transferPlayback } from '@/services/spotify';
+import { transferPlayback, fetchPlaybackState } from '@/services/spotify';
+
+import usePlayerStore from '@/stores/playerStore';
 
 const Player = ({ accessToken }) => {
-	const [player, setPlayer] = useState(null);
-	const [isReady, setIsReady] = useState(false);
-	const [currentTrack, setCurrentTrack] = useState(null); // To store track details
+	const {
+		deviceId,
+		setDeviceId,
+		player,
+		setPlayer,
+		isReady,
+		setIsReady,
+		playbackState,
+		setPlaybackState,
+	} = usePlayerStore();
+
+	const getPlaybackState = async () => {
+		const state = await fetchPlaybackState(accessToken);
+		setPlaybackState(state);
+	};
 
 	useEffect(() => {
 		const script = document.createElement('script');
@@ -24,9 +38,8 @@ const Player = ({ accessToken }) => {
 
 			spotifyPlayer.addListener('ready', ({ device_id }) => {
 				console.log('[Player] Ready with device ID:', device_id);
+				setDeviceId(device_id);
 				setIsReady(true);
-
-				// transferPlayback(device_id, accessToken);
 			});
 
 			spotifyPlayer.addListener('not_ready', ({ device_id }) => {
@@ -39,13 +52,10 @@ const Player = ({ accessToken }) => {
 				if (state) {
 					console.log('[Player] Player state changed:', state);
 
-					const track = state.track_window.current_track;
-					setCurrentTrack({
-						...track,
-						//   name: track.name,
-						//   artists: track.artists,
-						//   albumArt: track.album.images[0].url,
-					});
+					// const track = state.track_window.current_track;
+					// setCurrentTrack({
+					// 	...track,
+					// });
 				}
 			});
 
@@ -68,7 +78,13 @@ const Player = ({ accessToken }) => {
 			spotifyPlayer.connect();
 		};
 
+		getPlaybackState();
+		const intervalId = setInterval(() => {
+			getPlaybackState();
+		}, 5000);
+
 		return () => {
+			clearInterval(intervalId);
 			if (player) {
 				player.disconnect();
 			}
@@ -78,6 +94,7 @@ const Player = ({ accessToken }) => {
 
 	const handlePlayPause = async () => {
 		const state = await player.getCurrentState();
+		console.log('state', state);
 		if (!state) {
 			return;
 		}
@@ -97,32 +114,97 @@ const Player = ({ accessToken }) => {
 		player.previousTrack();
 	};
 
-	return (
-		<div className="player h-full">
-			{isReady && currentTrack ? (
-				<div className="grid grid-cols-3 h-full">
-					<div className="flex h-full">
-						<div
-							className="h-full aspect-square bg-center bg-cover"
-							style={{
-								backgroundImage: `url(${currentTrack.album.images[0].url})`,
-							}}
-						></div>
-						<span className="font-heading">
-							{currentTrack.name}
+	const handleTransferToPlayer = () => {
+		transferPlayback(deviceId, accessToken);
+	};
+
+	return playbackState && isReady ? (
+		<div className="h-full grid grid-rows-[1fr,auto]">
+			<div className="bg-black px-4 h-20 select-none grid grid-cols-3">
+				<div className="flex gap-2 py-2">
+					<div
+						className="rounded h-full aspect-square bg-center bg-cover"
+						style={{
+							backgroundImage: `url(${playbackState.item.album.images[0].url})`,
+						}}
+					></div>
+					<div className="flex flex-col justify-center w-full">
+						<span className="font-heading line-clamp-1 leading-5">
+							{playbackState.item.name}
 						</span>
-					</div>
-					<div>
-						<button onClick={handlePreviousTrack}>Previous</button>
-						<button onClick={handlePlayPause}>Play/Pause</button>
-						<button onClick={handleNextTrack}>Next</button>
+						<div className="flex">
+							{playbackState.item.artists.map(
+								(artist, index, array) => (
+									<div
+										className="font-copy text-sm text-gray-300"
+										key={artist.id}
+									>
+										<span>{artist.name}</span>
+										{index < array.length - 1 && (
+											<span className="text-gray-400">
+												&nbsp;•&nbsp;
+											</span>
+										)}
+									</div>
+								)
+							)}
+						</div>
 					</div>
 				</div>
-			) : (
-				<p>Loading player...</p>
+				<div className="flex justify-center items-center gap-10">
+					<button onClick={handlePreviousTrack}>Previous</button>
+					<button onClick={handlePlayPause}>Play/Pause</button>
+					<button onClick={handleNextTrack}>Next</button>
+				</div>
+				<div></div>
+			</div>
+			{playbackState.device.id !== deviceId && (
+				<div className="px-4 py-1 flex justify-end items-center gap-8 bg-spotify-green text-black text-xs font-copy">
+					<span className="font-bold">
+						Playing on {playbackState.device.name}
+					</span>
+					<button onClick={handleTransferToPlayer}>Play here</button>
+				</div>
 			)}
 		</div>
+	) : (
+		<></>
+		// <div>
+		// 	<span>No playback state.</span>
+		// </div>
 	);
+	// <div className="h-full">
+	// 	{playbackState?.is_playing &&
+	// 	playbackState?.device?.id !== deviceId ? (
+	// 		<>
+	// 			<pre>{JSON.stringify(playbackState, null, 4)}</pre>
+	// 		</>
+	// 	) : isReady && currentTrack ? (
+	// 		<div className="grid grid-cols-3 h-full">
+	// 			<div className="flex h-full">
+	// 				<div
+	// 					className="h-full aspect-square bg-center bg-cover"
+	// 					style={{
+	// 						backgroundImage: `url(${currentTrack.album.images[0].url})`,
+	// 					}}
+	// 				></div>
+	// 				<span className="font-heading">
+	// 					{currentTrack.name}
+	// 				</span>
+	// 			</div>
+	// 			<div>
+	// 				<button onClick={handlePreviousTrack}>Previous</button>
+	// 				<button onClick={handlePlayPause}>Play/Pause</button>
+	// 				<button onClick={handleNextTrack}>Next</button>
+	// 			</div>
+	// 		</div>
+	// 	) : (
+	// 		<>
+	// 			<p>No music currently playing.</p>
+	// 		</>
+	// 	)}
+	// </div>
+	// );
 };
 
 export default Player;
