@@ -11,7 +11,7 @@ const Home = async () => {
 
 	return (
 		<Layout>
-			<div className="grid grid-cols-[auto_1fr] h-full gap-4">
+			<div className="grid grid-cols-[auto_1fr] h-full gap-2">
 				<div className="bg-blue-300 overflow-y-auto h-full w-80 rounded">
 					LibraryPanel
 				</div>
@@ -70,6 +70,9 @@ const Home = async () => {
 					perferendis deserunt et ullam quaerat architecto facere hic?
 					Eum.
 				</div>
+				{/* <div className="bg-blue-300 overflow-y-auto h-full w-80 rounded">
+						SocialPanel
+					</div> */}
 			</div>
 
 			{/* <div className="bg-blue-200 h-full">

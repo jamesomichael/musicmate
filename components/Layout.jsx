@@ -16,7 +16,7 @@ const Layout = async ({ children }) => {
 			<div className="h-14">
 				<Navbar accessToken={accessToken} user={user} />
 			</div>
-			<div className="md:p-0 md:mx-4 pb-40 flex-1 overflow-hidden">
+			<div className="md:p-0 md:m-2 pb-40 flex-1 overflow-hidden">
 				{children}
 			</div>
 			<div className="fixed bottom-0 md:relative w-full">
