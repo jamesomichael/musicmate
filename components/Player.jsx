@@ -2,6 +2,14 @@
 import { useEffect, useState } from 'react';
 import { transferPlayback, fetchPlaybackState } from '@/services/spotify';
 
+import {
+	FaCirclePause,
+	FaCirclePlay,
+	FaBackwardStep,
+	FaForwardStep,
+	FaVolumeHigh,
+} from 'react-icons/fa6';
+
 import usePlayerStore from '@/stores/playerStore';
 
 const Player = ({ accessToken }) => {
@@ -12,6 +20,7 @@ const Player = ({ accessToken }) => {
 		setPlayer,
 		isReady,
 		setIsReady,
+		// currentTrack,
 		playbackState,
 		setPlaybackState,
 	} = usePlayerStore();
@@ -151,16 +160,45 @@ const Player = ({ accessToken }) => {
 						</div>
 					</div>
 				</div>
-				<div className="flex justify-center items-center gap-10">
-					<button onClick={handlePreviousTrack}>Previous</button>
-					<button onClick={handlePlayPause}>Play/Pause</button>
-					<button onClick={handleNextTrack}>Next</button>
+				<div className="flex justify-center items-center gap-7">
+					<div onClick={handlePreviousTrack}>
+						<FaBackwardStep
+							className="cursor-pointer text-gray-300 hover:text-white"
+							size={22}
+						/>
+					</div>
+					<div>
+						{playbackState.is_playing ? (
+							<>
+								<FaCirclePause
+									className="cursor-pointer hover:scale-105 hover:opacity-90"
+									onClick={handlePlayPause}
+									size={40}
+								/>
+							</>
+						) : (
+							<>
+								<FaCirclePlay
+									className="cursor-pointer hover:scale-105 hover:opacity-90"
+									onClick={handlePlayPause}
+									size={40}
+								/>
+							</>
+						)}
+					</div>
+					<div onClick={handleNextTrack}>
+						<FaForwardStep
+							className="cursor-pointer text-gray-300 hover:text-white"
+							size={22}
+						/>
+					</div>
 				</div>
 				<div></div>
 			</div>
 			{playbackState.device.id !== deviceId && (
-				<div className="px-4 py-1 flex justify-end items-center gap-8 bg-spotify-green text-black text-xs font-copy">
-					<span className="font-bold">
+				<div className="px-4 py-1 flex justify-end items-center gap-8 bg-gradient-to-r from-transparent to-spotify-green text-black text-xs font-copy">
+					<span className="flex items-center gap-2.5 font-bold">
+						<FaVolumeHigh size={15} />
 						Playing on {playbackState.device.name}
 					</span>
 					<button onClick={handleTransferToPlayer}>Play here</button>
