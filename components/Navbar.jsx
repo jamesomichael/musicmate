@@ -1,5 +1,8 @@
+'use client';
 import React from 'react';
 import Link from 'next/link';
+
+import DefaultUserImage from './DefaultUserImage';
 
 import { GrHomeRounded } from 'react-icons/gr';
 import { HiMiniMagnifyingGlass } from 'react-icons/hi2';
@@ -27,7 +30,28 @@ const Navbar = ({ user }) => {
 					/>
 				</div>
 			</div>
-			<div className="flex justify-end items-center">{user.email}</div>
+			<div className="flex justify-end items-center h-full p-2">
+				{user.images?.length > 0 ? (
+					<div
+						className="bg-cover bg-center h-full aspect-square rounded-full outline outline-neutral-700 outline-4 hover:scale-105 hover:cursor-pointer"
+						style={{
+							backgroundImage: `url(${user.images[0].url})`,
+						}}
+					></div>
+				) : (
+					<>
+						<div className="h-full">
+							<DefaultUserImage
+								onClick={() => {
+									alert('This is a test.');
+								}}
+								displayName={user.display_name}
+								className="outline outline-neutral-700 outline-4 hover:scale-105 hover:cursor-pointer"
+							/>
+						</div>
+					</>
+				)}
+			</div>
 		</div>
 	);
 };
