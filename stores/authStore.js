@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import axios from 'axios';
 
 const useAuthStore = create((set) => ({
 	isAuthorised: 'false',
@@ -7,6 +8,9 @@ const useAuthStore = create((set) => ({
 	refreshToken: null,
 	error: null,
 
+	logOut: async () => {
+		await axios.post('/api/logout');
+	},
 	setIsAuthorised: (isAuthorised) => set({ isAuthorised }),
 	setUsername: (username) => set({ username }),
 	setTokens: ({ accessToken, refreshToken }) =>
