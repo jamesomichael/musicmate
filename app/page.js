@@ -1,16 +1,6 @@
-import { cookies } from 'next/headers';
-
-import UserTest from '@/components/UserTest';
-import Layout from '@/components/Layout';
-
-import spotifyService from '@/services/spotify';
-
 const Home = async () => {
-	// const cookieStore = await cookies();
-	// const accessToken = cookieStore.get('access_token').value;
-
 	return (
-		<Layout>
+		<>
 			<div className="grid grid-cols-[auto_1fr] h-full gap-2">
 				<div className="bg-blue-300 overflow-y-auto h-full w-80 rounded">
 					LibraryPanel
@@ -141,7 +131,7 @@ const Home = async () => {
 					</div>
 				</div>
 			</div> */}
-		</Layout>
+		</>
 	);
 };
 

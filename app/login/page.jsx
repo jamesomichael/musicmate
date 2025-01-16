@@ -1,8 +1,12 @@
 import React from 'react';
-import Logo from '@/components/Logo';
-import Footer from '@/components/Footer';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
+import Logo from '@/components/Logo';
+import Footer from '@/components/Footer';
+
+import spotifyService from '@/services/spotify';
 import { SPOTIFY_SCOPES } from '@/constants/auth';
 
 const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
@@ -13,7 +17,17 @@ const authUrl = `${SPOTIFY_AUTH_URL}?response_type=code&client_id=${SPOTIFY_CLIE
 	SPOTIFY_REDIRECT_URI
 )}&scope=${encodeURIComponent(SPOTIFY_SCOPES.join(' '))}`;
 
-const Login = () => {
+const Login = async () => {
+	const cookieStore = await cookies();
+	const accessToken = cookieStore.get('access_token')?.value;
+
+	if (accessToken) {
+		const user = await spotifyService.fetchCurrentUser(accessToken);
+		if (user) {
+			redirect('/');
+		}
+	}
+
 	return (
 		<>
 			<div className="min-h-screen select-none bg-spotify-black flex-1 flex items-center pl-8 relative">
