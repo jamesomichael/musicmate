@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 
 import Search from './Search';
 import HomeButton from './HomeButton';
-import NavUserAvatar from './NavUserAvatar';
+import AccountAvatar from './AccountAvatar';
 
 const Navbar = ({ user }) => {
 	return (
@@ -19,7 +19,7 @@ const Navbar = ({ user }) => {
 				<Search />
 			</div>
 			<div className="flex justify-end items-center h-full p-2">
-				<NavUserAvatar user={user} />
+				<AccountAvatar user={user} />
 			</div>
 		</div>
 	);
