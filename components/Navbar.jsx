@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 
 import Navigation from './Navigation';
@@ -8,7 +8,15 @@ import Search from './Search';
 import HomeButton from './HomeButton';
 import AccountAvatar from './AccountAvatar';
 
+import useUserStore from '@/stores/userStore';
+
 const Navbar = ({ user }) => {
+	const { setUserData } = useUserStore();
+
+	useEffect(() => {
+		setUserData(user);
+	}, [user, setUserData]);
+
 	return (
 		<div className="h-full bg-black grid grid-cols-3 items-center">
 			<div className="p-2 flex justify-start items-center">
