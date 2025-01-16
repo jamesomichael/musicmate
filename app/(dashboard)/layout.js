@@ -1,7 +1,5 @@
 import '../globals.css';
 import { cookies } from 'next/headers';
-import { headers } from 'next/headers';
-// import { usePathname } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Player from '@/components/Player';
 import spotifyService from '@/services/spotify';
@@ -34,9 +32,12 @@ export default async function Layout({ children }) {
 							<div className="bg-spotify-black overflow-y-scroll h-full w-80 rounded p-8">
 								LibraryPanel
 							</div>
-							<div className="bg-spotify-black text-gray-300 text-6xl overflow-y-scroll h-full rounded font-gloock p-8">
+							<div className="bg-spotify-black overflow-y-scroll h-full rounded p-8">
 								{children}
 							</div>
+							{/* <div className="bg-spotify-black overflow-y-scroll h-full w-80 rounded p-8">
+								SocialPanel
+							</div> */}
 						</div>
 					</div>
 					{accessToken && (
