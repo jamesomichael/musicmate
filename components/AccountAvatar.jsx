@@ -26,12 +26,6 @@ const AccountAvatar = ({ user }) => {
 		};
 	}, []);
 
-	const logOut = () => {
-		// localStorage.removeItem('lastfm_token');
-		// localStorage.removeItem('lastfm_session');
-		// redirect('/login');
-	};
-
 	return (
 		<div className="h-full relative" ref={dropdownRef}>
 			{user.images?.length > 0 ? (
