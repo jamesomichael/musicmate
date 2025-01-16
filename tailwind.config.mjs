@@ -9,6 +9,7 @@ export default {
 		fontFamily: {
 			heading: ['Unbounded'],
 			copy: ['Poppins'],
+			gloock: ['Gloock'],
 		},
 		extend: {
 			colors: {
