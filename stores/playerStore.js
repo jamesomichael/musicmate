@@ -5,6 +5,9 @@ const usePlayerStore = create((set) => ({
 	isReady: false,
 	player: null,
 	nextTracks: [],
+	duration: 0,
+	progress: 0,
+	isSeeking: false,
 	playbackState: null,
 
 	setDeviceId: (deviceId) => set({ deviceId }),
@@ -13,6 +16,9 @@ const usePlayerStore = create((set) => ({
 	setPlaybackState: (playbackState) => {
 		set({ playbackState });
 	},
+	setDuration: (duration) => set({ duration }),
+	setProgress: (progress) => set({ progress }),
+	setIsSeeking: (isSeeking) => set({ isSeeking }),
 }));
 
 export default usePlayerStore;
