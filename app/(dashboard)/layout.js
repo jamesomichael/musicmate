@@ -1,5 +1,6 @@
 import '../globals.css';
 import { cookies } from 'next/headers';
+import LibraryPanel from '@/components/LibraryPanel';
 import Navbar from '@/components/Navbar';
 import Player from '@/components/Player';
 import spotifyService from '@/services/spotify';
@@ -30,7 +31,7 @@ export default async function Layout({ children }) {
 					<div className="md:p-0 md:mx-4 pb-40 flex-1 overflow-auto">
 						<div className="grid grid-cols-[auto_1fr] h-full gap-4">
 							<div className="bg-spotify-black overflow-y-scroll h-full w-80 rounded p-8">
-								LibraryPanel
+								<LibraryPanel />
 							</div>
 							<div className="bg-spotify-black overflow-y-scroll h-full rounded p-8">
 								{children}
