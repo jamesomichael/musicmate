@@ -2,10 +2,13 @@
 import React, { useEffect } from 'react';
 import useLibraryStore from '@/stores/libraryStore';
 
+import TabButton from './TabButton';
+
 import { LuSquareLibrary } from 'react-icons/lu';
+// import Loader from './Loader';
 
 const LibraryPanel = ({ accessToken }) => {
-	const { isLoading, playlists, setPlaylists } = useLibraryStore();
+	const { isLoading, activeTab, playlists, setPlaylists } = useLibraryStore();
 
 	useEffect(() => {
 		setPlaylists(accessToken);
@@ -19,23 +22,18 @@ const LibraryPanel = ({ accessToken }) => {
 					<span className="font-heading font-bold">Your Library</span>
 				</div>
 
-				<div className="flex gap-2 text-sm font-copy">
-					<span className="rounded-full px-3 py-1 bg-neutral-700 text-gray-200">
-						Playlists
-					</span>
-					<span className="rounded-full px-3 py-1 bg-neutral-700 text-gray-200">
-						Albums
-					</span>
-					<span className="rounded-full px-3 py-1 bg-neutral-700 text-gray-200">
-						Artists
-					</span>
+				<div className="flex overflow-x-scroll gap-2 text-sm font-copy">
+					<TabButton type="playlists" />
+					<TabButton type="albums" />
+					<TabButton type="artists" />
+					{/* <TabButton type="songs" /> */}
 				</div>
 			</div>
 			<div className="overflow-y-scroll">
 				<div className="flex flex-col gap-1">
 					{isLoading ? (
 						<div className="">Loading...</div>
-					) : (
+					) : activeTab === 'playlists' ? (
 						playlists.map((playlist) => {
 							return (
 								<div
@@ -53,7 +51,7 @@ const LibraryPanel = ({ accessToken }) => {
 										<div>No image</div>
 									)}
 									<div className="flex flex-col gap-0.5 justify-center items-start">
-										<span className="font-copy text-sm text-gray-200 line-clamp-1">
+										<span className="font-copy text-gray-200 line-clamp-1">
 											{playlist.name}
 										</span>
 										<span className="text-xs font-copy text-gray-300 line-clamp-1">
@@ -63,6 +61,12 @@ const LibraryPanel = ({ accessToken }) => {
 								</div>
 							);
 						})
+					) : activeTab === 'albums' ? (
+						<></>
+					) : activeTab === 'artists' ? (
+						<></>
+					) : (
+						<></>
 					)}
 				</div>
 			</div>
