@@ -19,11 +19,11 @@ const fetchCurrentUser = async (accessToken) => {
 	}
 };
 
-const fetchUserPlaylists = async (accessToken) => {
+const fetchUserPlaylists = async ({ limit = 50, offset = 0 }, accessToken) => {
 	console.log("[fetchUserPlaylists] Fetching the user's playlists...");
 	try {
 		const response = await axios.get(
-			'https://api.spotify.com/v1/me/playlists',
+			`https://api.spotify.com/v1/me/playlists?limit=${limit}&offset=${offset}`,
 			{
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
