@@ -41,6 +41,28 @@ const fetchUserPlaylists = async ({ limit = 50, offset = 0 }, accessToken) => {
 	}
 };
 
+const fetchUserAlbums = async ({ limit = 50, offset = 0 }, accessToken) => {
+	console.log("[fetchUserAlbums] Fetching the user's albums...");
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/me/albums?limit=${limit}&offset=${offset}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchUserAlbums] Albums retrieved.');
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchUserAlbums] Unable to fetch albums:',
+			error.message
+		);
+		return false;
+	}
+};
+
 const transferPlayback = async (deviceId, accessToken) => {
 	console.log('[transferPlayback] Attempting to transfer playback...');
 
@@ -87,6 +109,7 @@ const fetchPlaybackState = async (accessToken) => {
 module.exports = {
 	fetchCurrentUser,
 	fetchUserPlaylists,
+	fetchUserAlbums,
 	transferPlayback,
 	fetchPlaybackState,
 };

@@ -8,11 +8,13 @@ import { LuSquareLibrary } from 'react-icons/lu';
 // import Loader from './Loader';
 
 const LibraryPanel = ({ accessToken }) => {
-	const { isLoading, activeTab, playlists, setPlaylists } = useLibraryStore();
+	const { isLoading, activeTab, playlists, setPlaylists, albums, setAlbums } =
+		useLibraryStore();
 
 	useEffect(() => {
 		setPlaylists(accessToken);
-	}, [setPlaylists]);
+		setAlbums(accessToken);
+	}, [setPlaylists, setAlbums]);
 
 	return (
 		<div className="select-none grid grid-rows-[auto_1fr] h-full gap-2">
@@ -62,7 +64,35 @@ const LibraryPanel = ({ accessToken }) => {
 							);
 						})
 					) : activeTab === 'albums' ? (
-						<></>
+						albums.map(({ album }) => {
+							return (
+								<div
+									key={album.id}
+									className="rounded min-h-10 grid grid-cols-[auto_1fr] gap-2 items-center p-2"
+								>
+									{album.images?.length > 0 ? (
+										<div
+											className="rounded bg-center bg-cover h-12 aspect-square"
+											style={{
+												backgroundImage: `url(${album.images[0].url})`,
+											}}
+										></div>
+									) : (
+										<div>No image</div>
+									)}
+									<div className="flex flex-col gap-0.5 justify-center items-start">
+										<span className="font-copy text-gray-200 line-clamp-1">
+											{album.name}
+										</span>
+										<span className="text-xs font-copy text-gray-300 line-clamp-1">
+											{album.album_type !== 'album' &&
+												`${album.album_type} `}
+											{album.artists[0].name}
+										</span>
+									</div>
+								</div>
+							);
+						})
 					) : activeTab === 'artists' ? (
 						<></>
 					) : (
