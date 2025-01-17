@@ -258,7 +258,11 @@ const Player = ({ accessToken }) => {
 						</span>
 					</div>
 				</div>
-				<div></div>
+				<div className="flex justify-end items-center">
+					<span>Queue</span>
+					<span>Transfer Playback</span>
+					<span>Volume</span>
+				</div>
 			</div>
 
 			{playbackState.device.id !== deviceId && (
