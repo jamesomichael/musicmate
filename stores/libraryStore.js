@@ -34,6 +34,7 @@ const useLibraryStore = create((set) => {
 		isLoading: false,
 		playlists: [],
 		albums: [],
+		likedSongs: [],
 		activeTab: 'playlists',
 
 		setPlaylists: async (accessToken) => {
@@ -53,8 +54,18 @@ const useLibraryStore = create((set) => {
 				'id',
 				'album'
 			);
-			console.log(uniqueAlbums);
 			set({ isLoading: false, albums: uniqueAlbums });
+		},
+		setLikedSongs: async (accessToken) => {
+			set({ isLoading: true });
+			const likedSongs = await fetchPaginatedData(
+				spotifyService.fetchLikedSongs,
+				accessToken,
+				'id',
+				'track'
+			);
+			console.log(likedSongs);
+			set({ isLoading: false, likedSongs });
 		},
 		setActiveTab: (activeTab) => set({ activeTab }),
 	};

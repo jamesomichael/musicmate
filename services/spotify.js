@@ -63,6 +63,28 @@ const fetchUserAlbums = async ({ limit = 50, offset = 0 }, accessToken) => {
 	}
 };
 
+const fetchLikedSongs = async ({ limit = 50, offset = 0 }, accessToken) => {
+	console.log("[fetchLikedSongs] Fetching the user's liked songs...");
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/me/tracks?limit=${limit}&offset=${offset}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchLikedSongs] Liked songs retrieved.');
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchLikedSongs] Unable to fetch liked songs:',
+			error.message
+		);
+		return false;
+	}
+};
+
 const transferPlayback = async (deviceId, accessToken) => {
 	console.log('[transferPlayback] Attempting to transfer playback...');
 
@@ -110,6 +132,7 @@ module.exports = {
 	fetchCurrentUser,
 	fetchUserPlaylists,
 	fetchUserAlbums,
+	fetchLikedSongs,
 	transferPlayback,
 	fetchPlaybackState,
 };
