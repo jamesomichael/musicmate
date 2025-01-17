@@ -1,6 +1,9 @@
+import Loader from '@/components/Loader';
+
 const Home = async () => {
 	return (
 		<div className="text-gray-300 text-6xl font-gloock">
+			<Loader />
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
 			maiores ad assumenda veritatis molestiae esse dignissimos, soluta
 			debitis voluptatum dolor! Repudiandae perferendis deserunt et ullam
