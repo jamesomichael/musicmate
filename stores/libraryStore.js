@@ -4,6 +4,7 @@ import spotifyService from '@/services/spotify';
 const useLibraryStore = create((set) => ({
 	isLoading: false,
 	playlists: [],
+	activeTab: 'playlists',
 
 	setPlaylists: async (accessToken) => {
 		set({ isLoading: true });
@@ -23,8 +24,14 @@ const useLibraryStore = create((set) => ({
 			hasMore = data.items.length === limit;
 		}
 
-		set({ isLoading: false, playlists: allPlaylists });
+		const uniquePlaylists = [
+			...new Map(
+				allPlaylists.map((playlist) => [playlist.id, playlist])
+			).values(),
+		];
+		set({ isLoading: false, playlists: uniquePlaylists });
 	},
+	setActiveTab: (activeTab) => set({ activeTab }),
 }));
 
 export default useLibraryStore;
