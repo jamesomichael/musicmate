@@ -5,7 +5,7 @@ import useLibraryStore from '@/stores/libraryStore';
 import { LuSquareLibrary } from 'react-icons/lu';
 
 const LibraryPanel = ({ accessToken }) => {
-	const { playlists, setPlaylists } = useLibraryStore();
+	const { isLoading, playlists, setPlaylists } = useLibraryStore();
 
 	useEffect(() => {
 		setPlaylists(accessToken);
@@ -33,24 +33,37 @@ const LibraryPanel = ({ accessToken }) => {
 			</div>
 			<div className="overflow-y-scroll">
 				<div className="flex flex-col gap-1">
-					{playlists.map((playlist) => {
-						return (
-							<div
-								key={playlist.id}
-								className="rounded min-h-10 grid grid-cols-[auto_1fr] gap-2 items-center p-2"
-							>
+					{isLoading ? (
+						<div className="">Loading...</div>
+					) : (
+						playlists.map((playlist) => {
+							return (
 								<div
-									className="rounded bg-center bg-cover h-12 aspect-square"
-									style={{
-										backgroundImage: `url(${playlist.images[0]?.url})`,
-									}}
-								></div>
-								<span className="font-copy text-sm line-clamp-2">
-									{playlist.name}
-								</span>
-							</div>
-						);
-					})}
+									key={playlist.id}
+									className="rounded min-h-10 grid grid-cols-[auto_1fr] gap-2 items-center p-2"
+								>
+									{playlist.images?.length > 0 ? (
+										<div
+											className="rounded bg-center bg-cover h-12 aspect-square"
+											style={{
+												backgroundImage: `url(${playlist.images[0].url})`,
+											}}
+										></div>
+									) : (
+										<div>No image</div>
+									)}
+									<div className="flex flex-col gap-0.5 justify-center items-start">
+										<span className="font-copy text-sm text-gray-200 line-clamp-1">
+											{playlist.name}
+										</span>
+										<span className="text-xs font-copy text-gray-300 line-clamp-1">
+											{playlist.owner.display_name}
+										</span>
+									</div>
+								</div>
+							);
+						})
+					)}
 				</div>
 			</div>
 		</div>
