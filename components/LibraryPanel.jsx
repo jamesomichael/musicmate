@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import useLibraryStore from '@/stores/libraryStore';
@@ -26,11 +26,19 @@ const LibraryPanel = ({ accessToken }) => {
 		setLikedSongs,
 	} = useLibraryStore();
 
+	const scrollContainerRef = useRef(null);
+
 	useEffect(() => {
 		setPlaylists(accessToken);
 		setAlbums(accessToken);
 		setLikedSongs(accessToken);
-	}, [setPlaylists, setAlbums, setLikedSongs]);
+	}, [accessToken, setPlaylists, setAlbums, setLikedSongs]);
+
+	useEffect(() => {
+		if (scrollContainerRef.current) {
+			scrollContainerRef.current.scrollTop = 0; // Reset scroll position to top
+		}
+	}, [activeTab]);
 
 	const tabConfig = {
 		playlists: {
@@ -87,17 +95,17 @@ const LibraryPanel = ({ accessToken }) => {
 					<TabButton type="songs" />
 				</div>
 			</div>
-			<div className="overflow-y-scroll">
-				{currentTab?.isLoading ? (
-					<div className="h-full flex justify-center items-center">
-						<Loader />
-					</div>
-				) : (
+			{currentTab?.isLoading ? (
+				<div className="h-full flex justify-center items-center">
+					<Loader />
+				</div>
+			) : (
+				<div ref={scrollContainerRef} className="overflow-y-scroll">
 					<div className="flex flex-col gap-1">
 						{currentTab?.data?.map(currentTab.renderItem)}
 					</div>
-				)}
-			</div>
+				</div>
+			)}
 		</div>
 	);
 };
