@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect } from 'react';
-import Link from 'next/link';
 
 import Navigation from './Navigation';
 
