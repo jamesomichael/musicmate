@@ -9,7 +9,7 @@ const Loader = () => {
 				{[...Array(3)].map((_, index) => (
 					<motion.span
 						key={index}
-						className="w-2 h-2 bg-white rounded-full"
+						className="w-2 h-2 bg-neutral-400 rounded-full"
 						initial={{ scale: 1 }}
 						animate={{ scale: 2 }}
 						transition={{

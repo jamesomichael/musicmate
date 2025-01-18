@@ -31,33 +31,35 @@ const useLibraryStore = create((set) => {
 	};
 
 	return {
-		isLoading: false,
+		isLoadingPlaylists: true,
+		isLoadingAlbums: true,
+		isLoadingSongs: true,
 		playlists: [],
 		albums: [],
 		likedSongs: [],
 		activeTab: 'playlists',
 
 		setPlaylists: async (accessToken) => {
-			set({ isLoading: true });
+			set({ isLoadingPlaylists: true });
 			const uniquePlaylists = await fetchPaginatedData(
 				spotifyService.fetchUserPlaylists,
 				accessToken,
 				'id'
 			);
-			set({ isLoading: false, playlists: uniquePlaylists });
+			set({ isLoadingPlaylists: false, playlists: uniquePlaylists });
 		},
 		setAlbums: async (accessToken) => {
-			set({ isLoading: true });
+			set({ isLoadingAlbums: true });
 			const uniqueAlbums = await fetchPaginatedData(
 				spotifyService.fetchUserAlbums,
 				accessToken,
 				'id',
 				'album'
 			);
-			set({ isLoading: false, albums: uniqueAlbums });
+			set({ isLoadingAlbums: false, albums: uniqueAlbums });
 		},
 		setLikedSongs: async (accessToken) => {
-			set({ isLoading: true });
+			set({ isLoadingSongs: true });
 			const likedSongs = await fetchPaginatedData(
 				spotifyService.fetchLikedSongs,
 				accessToken,
@@ -65,7 +67,7 @@ const useLibraryStore = create((set) => {
 				'track'
 			);
 			console.log(likedSongs);
-			set({ isLoading: false, likedSongs });
+			set({ isLoadingSongs: false, likedSongs });
 		},
 		setActiveTab: (activeTab) => set({ activeTab }),
 	};
