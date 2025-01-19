@@ -85,6 +85,28 @@ const fetchLikedSongs = async ({ limit = 50, offset = 0 }, accessToken) => {
 	}
 };
 
+const fetchCategories = async ({ limit = 50, offset = 0 }, accessToken) => {
+	console.log('[fetchCategories] Fetching categories...');
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/browse/categories?locale=en_GB&limit=${limit}&offset=${offset}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchCategories] Categories retrieved.');
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchCategories] Unable to fetch categories:',
+			error.message
+		);
+		return false;
+	}
+};
+
 const transferPlayback = async (deviceId, accessToken) => {
 	console.log('[transferPlayback] Attempting to transfer playback...');
 
@@ -133,6 +155,7 @@ module.exports = {
 	fetchUserPlaylists,
 	fetchUserAlbums,
 	fetchLikedSongs,
+	fetchCategories,
 	transferPlayback,
 	fetchPlaybackState,
 };

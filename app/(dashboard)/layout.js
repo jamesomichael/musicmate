@@ -1,4 +1,5 @@
 import '../globals.css';
+import React from 'react';
 import { cookies } from 'next/headers';
 import LibraryPanel from '@/components/LibraryPanel';
 import Navbar from '@/components/Navbar';
@@ -34,7 +35,7 @@ export default async function Layout({ children }) {
 								<LibraryPanel accessToken={accessToken} />
 							</div>
 							<div className="bg-spotify-black overflow-y-scroll h-full rounded p-8">
-								{children}
+								{React.cloneElement(children, { accessToken })}
 							</div>
 							{/* <div className="bg-spotify-black overflow-y-scroll h-full w-80 rounded p-8">
 								SocialPanel

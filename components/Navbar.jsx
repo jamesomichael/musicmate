@@ -8,11 +8,14 @@ import HomeButton from './HomeButton';
 import AccountAvatar from './AccountAvatar';
 
 import useUserStore from '@/stores/userStore';
+import useAuthStore from '@/stores/authStore';
 
-const Navbar = ({ user }) => {
+const Navbar = ({ accessToken, user }) => {
+	const { setToken } = useAuthStore();
 	const { setUserData } = useUserStore();
 
 	useEffect(() => {
+		setToken(accessToken);
 		setUserData(user);
 	}, [user, setUserData]);
 

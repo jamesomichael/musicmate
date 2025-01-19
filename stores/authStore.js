@@ -13,8 +13,7 @@ const useAuthStore = create((set) => ({
 	},
 	setIsAuthorised: (isAuthorised) => set({ isAuthorised }),
 	setUsername: (username) => set({ username }),
-	setTokens: ({ accessToken, refreshToken }) =>
-		set({ accessToken, refreshToken }),
+	setToken: (accessToken) => set({ accessToken }),
 }));
 
 export default useAuthStore;
