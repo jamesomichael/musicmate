@@ -66,7 +66,6 @@ const useLibraryStore = create((set) => {
 				'id',
 				'track'
 			);
-			console.log(likedSongs);
 			set({ isLoadingSongs: false, likedSongs });
 		},
 		setActiveTab: (activeTab) => set({ activeTab }),
