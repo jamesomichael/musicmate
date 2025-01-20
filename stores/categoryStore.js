@@ -8,12 +8,25 @@ const useCategoryStore = create((set) => ({
 
 	setCategories: async (accessToken) => {
 		set({ isLoading: true });
-		const categories = await spotifyService.fetchCategories(
-			{},
-			accessToken
-		);
-		console.log('categories', categories);
-		set({ isLoading: false, categories: categories.categories.items });
+		const limit = 50;
+		let offset = 0;
+		let allCategories = [];
+		let hasMore = true;
+
+		while (hasMore) {
+			const data = await spotifyService.fetchCategories(
+				{ limit, offset },
+				accessToken
+			);
+			allCategories = [...allCategories, ...data.categories.items];
+			offset += limit;
+			hasMore = data.categories.items.length === limit;
+		}
+		const uniqueCategories = [
+			...new Map(allCategories.map((item) => [item.id, item])).values(),
+		];
+		console.log('uniqueCategories', uniqueCategories);
+		set({ isLoading: false, categories: uniqueCategories });
 	},
 }));
 
