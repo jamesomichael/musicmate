@@ -10,7 +10,7 @@ const AccountMenuItem = ({
 }) => {
 	return (
 		<div
-			className={`px-3 h-11 w-full flex items-center rounded hover:bg-neutral-500 ${
+			className={`px-3 h-11 w-full flex items-center rounded hover:bg-neutral-600 ${
 				href ? 'cursor-pointer' : ''
 			}`}
 			onClick={onClick}
