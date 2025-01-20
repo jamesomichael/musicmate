@@ -21,8 +21,8 @@ const BrowseCategories = () => {
 	}, [setCategories, accessToken]);
 
 	return (
-		<div className="select-none overflow-hidden h-full grid grid-rows-[auto_1fr] gap-4">
-			<div className="flex flex-col gap-2">
+		<div className="select-none overflow-hidden h-full grid grid-rows-[auto_1fr] gap-6">
+			<div className="px-8 pt-8 flex flex-col gap-2">
 				<div className="flex justify-start items-center gap-2 text-gray-300">
 					<BiSolidCategory size={30} />
 					<span className="font-heading text-base md:text-lg lg:text-xl font-bold">
@@ -48,7 +48,7 @@ const BrowseCategories = () => {
 			{isLoading ? (
 				<Loader />
 			) : (
-				<div className="overflow-y-scroll cursor-not-allowed">
+				<div className="overflow-y-scroll cursor-not-allowed px-8 pb-8">
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7 gap-4">
 						{categories.map((category) => {
 							return (

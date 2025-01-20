@@ -3,7 +3,7 @@ import BrowseCategories from '@/components/BrowseCategories';
 
 const Home = async () => {
 	return (
-		<div className="text-gray-300 text-6xl font-gloock">
+		<div className="text-gray-300 text-6xl font-gloock p-8">
 			{/* <Loader /> */}
 			{/* <BrowseCategories /> */}
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit

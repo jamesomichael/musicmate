@@ -34,7 +34,7 @@ export default async function Layout({ children }) {
 							<div className="bg-spotify-black overflow-hidden h-full w-80 rounded p-2">
 								<LibraryPanel accessToken={accessToken} />
 							</div>
-							<div className="bg-spotify-black overflow-y-scroll h-full rounded p-8">
+							<div className="bg-spotify-black overflow-y-scroll h-full rounded">
 								{children}
 							</div>
 							{/* <div className="bg-spotify-black overflow-y-scroll h-full w-80 rounded p-8">
