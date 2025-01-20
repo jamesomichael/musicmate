@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect } from 'react';
 
+import { FaRegClock } from 'react-icons/fa6';
+
 import useLibraryStore from '@/stores/libraryStore';
 import useAuthStore from '@/stores/authStore';
 import useUserStore from '@/stores/userStore';
@@ -37,38 +39,50 @@ const Songs = () => {
 					</div>
 				</div>
 			</div>
-			<div>Controls/Tags</div>
-			<div>
-				<div className="grid grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-4 font-copy text-gray-400 text-sm border-b border-neutral-800">
-					<span>#</span>
+			<div>{/* Controls/Tags */}</div>
+			<div className="p-6">
+				<div className="grid grid-cols-[3rem,2fr,1fr,1fr,5rem] py-1 gap-6 font-copy text-gray-400 text-sm border-b border-neutral-800">
+					<span className="text-right">#</span>
 					<span>Title</span>
 					<span>Album</span>
-					<span>Date added</span>
-					<span>Duration</span>
+					<span className="flex">Date added</span>
+					<div className="flex justify-center">
+						<FaRegClock />
+					</div>
 				</div>
 
 				{likedSongs.map(({ track, added_at: addedAt }, index) => {
 					return (
 						<div
 							key={track.id}
-							className="grid h-16 grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-4 items-center hover:bg-red-600 rounded"
+							className="grid h-16 grid-cols-[3rem,2fr,1fr,1fr,5rem] gap-6 items-center hover:bg-neutral-800 rounded"
 						>
-							<span className="font-copy text-sm text-right">
+							<span className="font-copy text-sm text-right text-gray-300">
 								{index + 1}
 							</span>
-							<div className="flex flex-col">
-								<span className="font-heading text-sm">
-									{track.name}
-								</span>
-								<span className="font-copy text-xs">
-									{track.artists[0].name}
-								</span>
+							<div className="flex h-full p-2 gap-2 justify-start items-center">
+								<div
+									className="bg-cover bg-center h-full aspect-square rounded"
+									style={{
+										backgroundImage: `url(${track.album.images[0]?.url})`,
+									}}
+								></div>
+								<div className="flex flex-col">
+									<span className="font-heading text-sm text-gray-200">
+										{track.name}
+									</span>
+									<span className="font-copy text-xs text-gray-300">
+										{track.artists[0].name}
+									</span>
+								</div>
 							</div>
-							<span className="font-copy text-sm truncate">
+							<span className="font-copy text-sm text-gray-300 truncate">
 								{track.album.name}
 							</span>
-							<span className="font-copy text-sm">{addedAt}</span>
-							<span className="font-copy text-sm">
+							<span className="font-copy text-gray-300 text-sm">
+								{addedAt}
+							</span>
+							<span className="font-copy text-gray-300 text-sm">
 								{track.duration_ms}
 							</span>
 						</div>
