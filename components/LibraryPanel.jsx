@@ -31,7 +31,7 @@ const LibraryPanel = ({ accessToken }) => {
 	useEffect(() => {
 		setPlaylists(accessToken);
 		setAlbums(accessToken);
-		setLikedSongs(accessToken);
+		// setLikedSongs(accessToken);
 	}, [accessToken, setPlaylists, setAlbums, setLikedSongs]);
 
 	useEffect(() => {
@@ -92,7 +92,7 @@ const LibraryPanel = ({ accessToken }) => {
 				<div className="flex overflow-x-scroll gap-2 text-sm font-copy">
 					<TabButton type="playlists" />
 					<TabButton type="albums" />
-					<TabButton type="songs" />
+					{/* <TabButton type="songs" /> */}
 				</div>
 			</div>
 			{currentTab?.isLoading ? (
