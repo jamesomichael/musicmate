@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import { BsFillPinAngleFill } from 'react-icons/bs';
@@ -10,10 +11,15 @@ const LibraryPanelListItem = ({
 	secondaryText,
 	isPinnedItem = false,
 }) => {
+	const pathname = usePathname();
 	return (
 		<Link
 			href={href}
-			className="hover:bg-neutral-800 hover:cursor-pointer rounded min-h-10 grid grid-cols-[auto_1fr] gap-2 items-center p-2"
+			className={`hover:cursor-pointer rounded min-h-10 grid grid-cols-[auto_1fr] gap-2 items-center p-2 ${
+				href === pathname
+					? 'bg-neutral-700 hover:bg-neutral-600'
+					: 'hover:bg-neutral-800'
+			}`}
 		>
 			{imageUrl ? (
 				<div
