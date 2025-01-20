@@ -44,14 +44,28 @@ const LibraryPanel = ({ accessToken }) => {
 		playlists: {
 			isLoading: isLoadingPlaylists,
 			data: playlists,
-			renderItem: (playlist) => (
-				<LibraryPanelListItem
-					key={playlist.id}
-					imageUrl={playlist.images?.[0]?.url}
-					primaryText={playlist.name}
-					secondaryText={playlist.owner.display_name}
-				/>
-			),
+			renderItem: (playlist) => {
+				if (playlist.name === 'Liked Songs') {
+					return (
+						<LibraryPanelListItem
+							key={playlist.name}
+							imageUrl="/liked-songs-300.jpg"
+							primaryText={playlist.name}
+							isPinnedItem={true}
+							href="/library/songs"
+						/>
+					);
+				} else {
+					return (
+						<LibraryPanelListItem
+							key={playlist.id}
+							imageUrl={playlist.images?.[0]?.url}
+							primaryText={playlist.name}
+							secondaryText={playlist.owner.display_name}
+						/>
+					);
+				}
+			},
 		},
 		albums: {
 			isLoading: isLoadingAlbums,

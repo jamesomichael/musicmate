@@ -46,7 +46,13 @@ const useLibraryStore = create((set) => {
 				accessToken,
 				'id'
 			);
-			set({ isLoadingPlaylists: false, playlists: uniquePlaylists });
+			const playlists = [
+				{
+					name: 'Liked Songs',
+				},
+				...uniquePlaylists,
+			];
+			set({ isLoadingPlaylists: false, playlists });
 		},
 		setAlbums: async (accessToken) => {
 			set({ isLoadingAlbums: true });
