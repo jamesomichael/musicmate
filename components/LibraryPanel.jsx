@@ -62,6 +62,7 @@ const LibraryPanel = ({ accessToken }) => {
 							imageUrl={playlist.images?.[0]?.url}
 							primaryText={playlist.name}
 							secondaryText={playlist.owner.display_name}
+							href={`/playlist/${playlist.id}`}
 						/>
 					);
 				}
@@ -76,6 +77,7 @@ const LibraryPanel = ({ accessToken }) => {
 					imageUrl={album.images?.[0]?.url}
 					primaryText={album.name}
 					secondaryText={album.artists[0].name}
+					href={`/album/${album.id}`}
 				/>
 			),
 		},
