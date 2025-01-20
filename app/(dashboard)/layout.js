@@ -35,7 +35,7 @@ export default async function Layout({ children }) {
 								<LibraryPanel accessToken={accessToken} />
 							</div>
 							<div className="bg-spotify-black overflow-y-scroll h-full rounded p-8">
-								{React.cloneElement(children, { accessToken })}
+								{children}
 							</div>
 							{/* <div className="bg-spotify-black overflow-y-scroll h-full w-80 rounded p-8">
 								SocialPanel
