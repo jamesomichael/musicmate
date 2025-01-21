@@ -3,9 +3,10 @@ import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
-import { FaRegClock } from 'react-icons/fa6';
+import { FaRegClock, FaPlay, FaPause } from 'react-icons/fa6';
 
 import useLibraryStore from '@/stores/libraryStore';
+import usePlayerStore from '@/stores/playerStore';
 import useAuthStore from '@/stores/authStore';
 import useUserStore from '@/stores/userStore';
 
@@ -13,7 +14,8 @@ dayjs.extend(duration);
 
 const Songs = () => {
 	const { accessToken } = useAuthStore();
-	const { displayName } = useUserStore();
+	const { displayName, uri: userUri } = useUserStore();
+	const { play } = usePlayerStore();
 	const { isLoadingSongs, hasFetchedLikedSongs, likedSongs, setLikedSongs } =
 		useLibraryStore();
 
@@ -43,7 +45,19 @@ const Songs = () => {
 					</div>
 				</div>
 			</div>
-			<div>{/* Controls/Tags */}</div>
+			<div className="p-6">
+				<div
+					onClick={() =>
+						play({
+							contextUri: `${userUri}:collection`,
+							offsetPosition: 0,
+						})
+					}
+					className="flex justify-center items-center rounded-full w-16 aspect-square bg-spotify-green hover:cursor-pointer hover:bg-green-400 hover:scale-105"
+				>
+					<FaPlay className="text-spotify-black" size={23} />
+				</div>
+			</div>
 			<div className="p-6">
 				<div className="grid grid-cols-[3rem,2fr,1fr,1fr,5rem] py-1 gap-6 font-copy text-gray-400 text-sm border-b border-neutral-800 mb-4">
 					<span className="text-right">#</span>
@@ -59,6 +73,12 @@ const Songs = () => {
 					return (
 						<div
 							key={track.id}
+							onDoubleClick={() => {
+								play({
+									contextUri: `${userUri}:collection`,
+									offsetUri: track.uri,
+								});
+							}}
 							className="grid h-16 grid-cols-[3rem,2fr,1fr,1fr,5rem] gap-6 items-center hover:bg-neutral-800 rounded"
 						>
 							<span className="font-copy text-sm text-right text-gray-300">
