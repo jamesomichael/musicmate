@@ -17,7 +17,8 @@ const useLibraryStore = create((set) => {
 			const data = await fetchFn({ limit, offset }, accessToken);
 			allItems = [...allItems, ...data.items];
 			offset += limit;
-			hasMore = data.items.length === limit;
+			// hasMore = data.items.length === limit;
+			hasMore = false;
 		}
 
 		return [
@@ -31,12 +32,13 @@ const useLibraryStore = create((set) => {
 	};
 
 	return {
-		isLoadingPlaylists: true,
-		isLoadingAlbums: true,
-		isLoadingSongs: true,
+		isLoadingPlaylists: false,
+		isLoadingAlbums: false,
+		isLoadingSongs: false,
 		playlists: [],
 		albums: [],
 		likedSongs: [],
+		hasFetchedLikedSongs: false,
 		activeTab: 'playlists',
 
 		setPlaylists: async (accessToken) => {
@@ -72,7 +74,11 @@ const useLibraryStore = create((set) => {
 				'id',
 				'track'
 			);
-			set({ isLoadingSongs: false, likedSongs });
+			set({
+				isLoadingSongs: false,
+				hasFetchedLikedSongs: true,
+				likedSongs,
+			});
 		},
 		setActiveTab: (activeTab) => set({ activeTab }),
 	};
