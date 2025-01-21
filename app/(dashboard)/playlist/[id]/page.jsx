@@ -21,7 +21,6 @@ const Playlist = async ({ params }) => {
 		},
 		tracks: tracks.items,
 	};
-	console.log('playlist', playlist);
 	return (
 		<div>
 			<PlaylistDetailed playlist={playlist} />
