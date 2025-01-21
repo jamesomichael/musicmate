@@ -3,10 +3,7 @@ import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
-import { FaRegClock, FaPlay, FaPause } from 'react-icons/fa6';
-
 import useLibraryStore from '@/stores/libraryStore';
-import usePlayerStore from '@/stores/playerStore';
 import useAuthStore from '@/stores/authStore';
 import useUserStore from '@/stores/userStore';
 
@@ -16,7 +13,7 @@ dayjs.extend(duration);
 
 const Songs = () => {
 	const { accessToken } = useAuthStore();
-	const { uri: userUri } = useUserStore();
+	const { displayName, uri: userUri } = useUserStore();
 	const { isLoadingSongs, hasFetchedLikedSongs, likedSongs, setLikedSongs } =
 		useLibraryStore();
 
@@ -28,10 +25,13 @@ const Songs = () => {
 
 	const playlist = {
 		metadata: {
-			playlistName: 'Liked Songs',
+			name: 'Liked Songs',
 			uri: `${userUri}:collection`,
 			imageUrl: '/liked-songs-300.jpg',
 			size: hasFetchedLikedSongs ? likedSongs.length : null,
+			owner: {
+				display_name: displayName,
+			},
 		},
 		tracks: likedSongs,
 	};
