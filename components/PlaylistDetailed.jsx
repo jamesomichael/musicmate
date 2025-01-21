@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 import { FaPlay } from 'react-icons/fa6';
@@ -10,13 +11,14 @@ import usePlayerStore from '@/stores/playerStore';
 const PlaylistDetailed = ({ playlist }) => {
 	const { play } = usePlayerStore();
 	const { metadata, tracks } = playlist;
-	const { playlistName, uri, size, imageUrl } = metadata;
+	const { name: playlistName, uri, size, imageUrl, owner } = metadata;
 	return (
 		<div className="select-none grid grid-rows-[auto,auto,1fr]">
 			<PlaylistHeader
 				name={playlistName}
 				imageUrl={imageUrl}
 				size={size}
+				owner={owner}
 			/>
 			<div className="p-6">
 				<div

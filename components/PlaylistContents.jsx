@@ -25,7 +25,7 @@ const PlaylistContents = ({ tracks, contextUri }) => {
 			{tracks.map(({ track, added_at: addedAt }, index) => {
 				return (
 					<div
-						key={track.id}
+						key={`${track.id}_${index}`}
 						onDoubleClick={() => {
 							play({
 								contextUri,
@@ -59,11 +59,16 @@ const PlaylistContents = ({ tracks, contextUri }) => {
 						<span className="font-copy text-gray-300 text-sm">
 							{dayjs().diff(dayjs(addedAt), 'weeks') > 4
 								? dayjs(addedAt).format('D MMM YYYY')
-								: dayjs().diff(dayjs(addedAt), 'weeks') >= 1
+								: dayjs().diff(dayjs(addedAt), 'weeks') > 1
 								? `${dayjs().diff(
 										dayjs(addedAt),
 										'weeks'
 								  )} weeks ago`
+								: dayjs().diff(dayjs(addedAt), 'weeks') === 1
+								? `${dayjs().diff(
+										dayjs(addedAt),
+										'weeks'
+								  )} week ago`
 								: dayjs(addedAt).fromNow()}
 						</span>
 						<span className="font-copy text-gray-300 text-sm">
