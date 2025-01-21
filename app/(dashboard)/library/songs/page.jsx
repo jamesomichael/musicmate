@@ -45,7 +45,7 @@ const Songs = () => {
 			</div>
 			<div>{/* Controls/Tags */}</div>
 			<div className="p-6">
-				<div className="grid grid-cols-[3rem,2fr,1fr,1fr,5rem] py-1 gap-6 font-copy text-gray-400 text-sm border-b border-neutral-800">
+				<div className="grid grid-cols-[3rem,2fr,1fr,1fr,5rem] py-1 gap-6 font-copy text-gray-400 text-sm border-b border-neutral-800 mb-4">
 					<span className="text-right">#</span>
 					<span>Title</span>
 					<span>Album</span>
