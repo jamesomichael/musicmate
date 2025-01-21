@@ -176,6 +176,29 @@ const play = async ({ contextUri, offset, uris, deviceId }, accessToken) => {
 	}
 };
 
+const fetchPlaylistById = async (playlistId, accessToken) => {
+	console.log('[fetchPlaylistById] Fetching playlist...');
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/playlists/${playlistId}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchPlaylistById] Playlist retrieved.');
+		console.log('response.data', response.data);
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchPlaylistById] Unable to fetch playlist:',
+			error.message
+		);
+		return false;
+	}
+};
+
 module.exports = {
 	fetchCurrentUser,
 	fetchUserPlaylists,
@@ -185,4 +208,5 @@ module.exports = {
 	transferPlayback,
 	fetchPlaybackState,
 	play,
+	fetchPlaylistById,
 };
