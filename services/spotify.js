@@ -150,6 +150,32 @@ const fetchPlaybackState = async (accessToken) => {
 	}
 };
 
+const play = async ({ contextUri, offset, uris, deviceId }, accessToken) => {
+	console.log('[play] Playing item...');
+	try {
+		const response = await axios.put(
+			`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+			{
+				...(contextUri && { context_uri: contextUri }),
+				...(offset && { offset }),
+				...(uris && { uris }),
+			},
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+
+		console.log('[play] Item is now playing.');
+		return true;
+	} catch (error) {
+		console.error('[play] Error playing:', error);
+		return false;
+	}
+};
+
 module.exports = {
 	fetchCurrentUser,
 	fetchUserPlaylists,
@@ -158,4 +184,5 @@ module.exports = {
 	fetchCategories,
 	transferPlayback,
 	fetchPlaybackState,
+	play,
 };
