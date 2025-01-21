@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 
-const usePlayerStore = create((set) => ({
+import useAuthStore from './authStore';
+
+import spotifyService from '@/services/spotify';
+
+const usePlayerStore = create((set, get) => ({
 	deviceId: null,
 	isReady: false,
 	player: null,
@@ -19,6 +23,21 @@ const usePlayerStore = create((set) => ({
 	setDuration: (duration) => set({ duration }),
 	setProgress: (progress) => set({ progress }),
 	setIsSeeking: (isSeeking) => set({ isSeeking }),
+	play: async ({ offsetPosition, offsetUri, contextUri, deviceId }) => {
+		await spotifyService.play(
+			{
+				deviceId: get().deviceId,
+				offset: {
+					...(offsetUri && { uri: offsetUri }),
+					...(typeof offsetPosition !== 'undefined' && {
+						position: offsetPosition,
+					}),
+				},
+				...(contextUri && { contextUri }),
+			},
+			useAuthStore.getState().accessToken
+		);
+	},
 }));
 
 export default usePlayerStore;
