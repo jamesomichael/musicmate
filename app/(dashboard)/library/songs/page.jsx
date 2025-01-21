@@ -1,11 +1,15 @@
 'use client';
 import React, { useEffect } from 'react';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
 
 import { FaRegClock } from 'react-icons/fa6';
 
 import useLibraryStore from '@/stores/libraryStore';
 import useAuthStore from '@/stores/authStore';
 import useUserStore from '@/stores/userStore';
+
+dayjs.extend(duration);
 
 const Songs = () => {
 	const { accessToken } = useAuthStore();
@@ -46,7 +50,7 @@ const Songs = () => {
 					<span>Title</span>
 					<span>Album</span>
 					<span className="flex">Date added</span>
-					<div className="flex justify-center">
+					<div className="flex">
 						<FaRegClock />
 					</div>
 				</div>
@@ -80,10 +84,19 @@ const Songs = () => {
 								{track.album.name}
 							</span>
 							<span className="font-copy text-gray-300 text-sm">
-								{addedAt}
+								{dayjs().diff(dayjs(addedAt), 'weeks') > 4
+									? dayjs(addedAt).format('D MMM YYYY')
+									: dayjs().diff(dayjs(addedAt), 'weeks') >= 1
+									? `${dayjs().diff(
+											dayjs(addedAt),
+											'weeks'
+									  )} weeks ago`
+									: dayjs(addedAt).fromNow()}
 							</span>
 							<span className="font-copy text-gray-300 text-sm">
-								{track.duration_ms}
+								{dayjs
+									.duration(track.duration_ms, 'milliseconds')
+									.format('m:ss')}
 							</span>
 						</div>
 					);
