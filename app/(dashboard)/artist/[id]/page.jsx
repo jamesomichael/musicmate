@@ -1,7 +1,9 @@
+'use client';
+import { useParams } from 'next/navigation';
 import React from 'react';
 
-const Artist = async ({ params }) => {
-	const { id } = await params;
+const Artist = () => {
+	const { id } = useParams();
 	return <div>Artist {id}</div>;
 };
 

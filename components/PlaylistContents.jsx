@@ -1,11 +1,11 @@
 import React from 'react';
+import Link from 'next/link';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
 import { FaRegClock } from 'react-icons/fa6';
 
 import usePlayerStore from '@/stores/playerStore';
-import Link from 'next/link';
 
 dayjs.extend(duration);
 
@@ -49,9 +49,12 @@ const PlaylistContents = ({ tracks, contextUri }) => {
 								<span className="font-heading text-sm text-gray-200">
 									{track.name}
 								</span>
-								<span className="font-copy text-xs text-gray-300">
+								<Link
+									href={`/artist/${track.artists[0].id}`}
+									className="font-copy text-xs text-gray-300 hover:underline"
+								>
 									{track.artists[0].name}
-								</span>
+								</Link>
 							</div>
 						</div>
 						<Link

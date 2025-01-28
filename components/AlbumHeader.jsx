@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import dayjs from 'dayjs';
 
 import Loader from './Loader';
@@ -50,9 +51,12 @@ const AlbumHeader = ({ name, artists, imageUrl, releaseDate, totalTracks }) => {
 								{artists.map((artist, i) => {
 									return (
 										<div key={artist.id}>
-											<span className="font-bold hover:cursor-pointer hover:underline">
+											<Link
+												href={`/artist/${artist.id}`}
+												className="font-bold hover:cursor-pointer hover:underline"
+											>
 												{artist.name}
-											</span>
+											</Link>
 											{i + 1 < artists.length && (
 												<span className="pl-1 text-gray-300">
 													•

@@ -5,6 +5,7 @@ import duration from 'dayjs/plugin/duration';
 import { FaRegClock } from 'react-icons/fa6';
 
 import usePlayerStore from '@/stores/playerStore';
+import Link from 'next/link';
 
 const AlbumContents = ({ tracks, contextUri }) => {
 	const { play } = usePlayerStore();
@@ -59,9 +60,12 @@ const AlbumContents = ({ tracks, contextUri }) => {
 												key={artist.id}
 												className="flex items-center"
 											>
-												<span className="font-copy text-xs text-gray-300 hover:cursor-pointer hover:underline">
+												<Link
+													href={`/artist/${artist.id}`}
+													className="font-copy text-xs text-gray-300 hover:cursor-pointer hover:underline"
+												>
 													{artist.name}
-												</span>
+												</Link>
 												{i + 1 <
 													track.artists.length && (
 													<span className="text-xs">
