@@ -25,7 +25,6 @@ const useCategoryStore = create((set) => ({
 		const uniqueCategories = [
 			...new Map(allCategories.map((item) => [item.id, item])).values(),
 		];
-		console.log('uniqueCategories', uniqueCategories);
 		set({ isLoading: false, categories: uniqueCategories });
 	},
 }));

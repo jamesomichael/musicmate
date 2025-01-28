@@ -188,7 +188,6 @@ const fetchPlaylistById = async (playlistId, accessToken) => {
 			}
 		);
 		console.log('[fetchPlaylistById] Playlist retrieved.');
-		console.log('response.data', response.data);
 		return response.data;
 	} catch (error) {
 		console.error(
@@ -215,7 +214,6 @@ const fetchPlaylistItems = async (
 			}
 		);
 		console.log('[fetchPlaylistItems] Playlist items retrieved.');
-		console.log('response.data', response.data);
 		return response.data;
 	} catch (error) {
 		console.error(
@@ -238,7 +236,6 @@ const fetchAlbumById = async (id, accessToken) => {
 			}
 		);
 		console.log('[fetchAlbumById] Album retrieved.');
-		console.log('response.data', response.data);
 		return response.data;
 	} catch (error) {
 		console.error('[fetchAlbumById] Unable to fetch album:', error.message);
@@ -262,7 +259,6 @@ const fetchAlbumTracks = async (
 			}
 		);
 		console.log('[fetchAlbumTracks] Album tracks retrieved.');
-		console.log('response.data', response.data);
 		return response.data;
 	} catch (error) {
 		console.error(
