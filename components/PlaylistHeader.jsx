@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Vibrant } from 'node-vibrant/browser';
 
 const PlaylistHeader = ({ size, name, imageUrl, owner }) => {
-	return (
-		<div className="bg-gradient-to-b from-indigo-800 to-indigo-950 p-6 h-72 grid grid-cols-[auto_1fr] gap-6">
+	const [gradient, setGradient] = useState(
+		'linear-gradient(to bottom, #3fbf3f, #3fbf3f)'
+	);
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		if (imageUrl) {
+			Vibrant.from(imageUrl)
+				.getPalette()
+				.then((palette) => {
+					const colourFrom = palette.DarkVibrant.hex;
+					const colourTo = palette.DarkMuted.hex;
+					setGradient(
+						`linear-gradient(to bottom, ${colourFrom}, ${colourTo})`
+					);
+					setIsLoading(false);
+				})
+				.catch((err) => {
+					console.error('Error generating colors:', err.message);
+					setGradient('linear-gradient(to bottom, #3fbf3f, #3fbf3f)');
+					setIsLoading(false);
+				});
+		}
+	}, [imageUrl]);
+
+	return isLoading ? (
+		<>Loading...</>
+	) : (
+		<div
+			className={`p-6 h-72 grid grid-cols-[auto_1fr] gap-6`}
+			style={{
+				background: gradient,
+			}}
+		>
 			<div
 				className="h-full aspect-square bg-cover bg-center rounded"
 				style={{ backgroundImage: `url(${imageUrl})` }}
