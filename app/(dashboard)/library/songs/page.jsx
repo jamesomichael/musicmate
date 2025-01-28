@@ -3,11 +3,15 @@ import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
+import { FaPlay } from 'react-icons/fa6';
+
 import useLibraryStore from '@/stores/libraryStore';
 import useAuthStore from '@/stores/authStore';
 import useUserStore from '@/stores/userStore';
 
-import PlaylistDetailed from '@/components/PlaylistDetailed';
+import Loader from '@/components/Loader';
+import PlaylistHeader from '@/components/PlaylistHeader';
+import PlaylistContents from '@/components/PlaylistContents';
 
 dayjs.extend(duration);
 
@@ -36,7 +40,45 @@ const Songs = () => {
 		tracks: likedSongs,
 	};
 
-	return <PlaylistDetailed playlist={playlist} />;
+	return (
+		<div className="select-none grid grid-rows-[auto,1fr] h-full">
+			<PlaylistHeader
+				name={playlist.metadata.name}
+				imageUrl={playlist.metadata.imageUrl}
+				size={playlist.metadata.size}
+				owner={playlist.metadata.owner}
+			/>
+			{isLoadingSongs ? (
+				<div className="flex justify-center items-center">
+					<Loader />
+				</div>
+			) : (
+				<div>
+					<div className="p-6">
+						<div
+							onClick={() =>
+								play({
+									contextUri: playlist.metadata.uri,
+									offsetPosition: 0,
+								})
+							}
+							className="flex justify-center items-center rounded-full w-16 aspect-square bg-spotify-green hover:cursor-pointer hover:bg-green-400 hover:scale-105"
+						>
+							<FaPlay className="text-spotify-black" size={23} />
+						</div>
+					</div>
+					<div className="p-6">
+						<PlaylistContents
+							tracks={playlist.tracks}
+							contextUri={playlist.metadata.uri}
+						/>
+					</div>
+				</div>
+			)}
+		</div>
+	);
+
+	// return <PlaylistDetailed playlist={playlist} />;
 };
 /**
 <div className="select-none grid grid-rows-[auto,auto,1fr]">

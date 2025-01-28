@@ -1,36 +1,9 @@
 import { create } from 'zustand';
 import spotifyService from '@/services/spotify';
 
+import fetchPaginatedData from '@/utils/fetchPaginatedData';
+
 const useLibraryStore = create((set) => {
-	const fetchPaginatedData = async (
-		fetchFn,
-		accessToken,
-		idKey,
-		objectKey
-	) => {
-		const limit = 50;
-		let offset = 0;
-		let allItems = [];
-		let hasMore = true;
-
-		while (hasMore) {
-			const data = await fetchFn({ limit, offset }, accessToken);
-			allItems = [...allItems, ...data.items];
-			offset += limit;
-			// hasMore = data.items.length === limit;
-			hasMore = false;
-		}
-
-		return [
-			...new Map(
-				allItems.map((item) => [
-					objectKey ? item[objectKey][idKey] : item[idKey],
-					item,
-				])
-			).values(),
-		];
-	};
-
 	return {
 		isLoadingPlaylists: false,
 		isLoadingAlbums: false,
@@ -45,6 +18,7 @@ const useLibraryStore = create((set) => {
 			set({ isLoadingPlaylists: true });
 			const uniquePlaylists = await fetchPaginatedData(
 				spotifyService.fetchUserPlaylists,
+				null,
 				accessToken,
 				'id'
 			);
@@ -60,6 +34,7 @@ const useLibraryStore = create((set) => {
 			set({ isLoadingAlbums: true });
 			const uniqueAlbums = await fetchPaginatedData(
 				spotifyService.fetchUserAlbums,
+				null,
 				accessToken,
 				'id',
 				'album'
@@ -70,6 +45,7 @@ const useLibraryStore = create((set) => {
 			set({ isLoadingSongs: true });
 			const likedSongs = await fetchPaginatedData(
 				spotifyService.fetchLikedSongs,
+				null,
 				accessToken,
 				'id',
 				'track'

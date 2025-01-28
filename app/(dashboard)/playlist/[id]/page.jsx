@@ -1,29 +1,70 @@
-import React from 'react';
-import { cookies } from 'next/headers';
+'use client';
+import React, { useEffect } from 'react';
+import { useParams } from 'next/navigation';
 
-import spotifyService from '@/services/spotify';
+import { FaPlay } from 'react-icons/fa6';
 
-import PlaylistDetailed from '@/components/PlaylistDetailed';
+import PlaylistHeader from '@/components/PlaylistHeader';
+import PlaylistContents from '@/components/PlaylistContents';
+import Loader from '@/components/Loader';
 
-const Playlist = async ({ params }) => {
-	const { id } = await params;
-	const cookieStore = await cookies();
-	const accessToken = cookieStore.get('access_token')?.value;
-	const { tracks, ...metadata } = await spotifyService.fetchPlaylistById(
-		id,
-		accessToken
-	);
-	const playlist = {
-		metadata: {
-			...metadata,
-			imageUrl: metadata.images[0].url,
-			size: tracks.items.length,
-		},
-		tracks: tracks.items,
-	};
+import useActiveItemStore from '@/stores/activeItemStore';
+
+const Playlist = () => {
+	const { id } = useParams();
+	const { metadata, data, setActiveItem, isLoadingMetadata, isLoadingData } =
+		useActiveItemStore();
+
+	const { name: playlistName, uri, images, owner } = metadata;
+
+	useEffect(() => {
+		setActiveItem(id, 'playlist');
+	}, [setActiveItem]);
+
 	return (
-		<div>
-			<PlaylistDetailed playlist={playlist} />
+		<div className="h-full">
+			<div className="select-none grid grid-rows-[auto,1fr] h-full">
+				{isLoadingMetadata ? (
+					<div className="h-72 flex items-center justify-center">
+						<Loader />
+					</div>
+				) : (
+					<PlaylistHeader
+						name={playlistName}
+						imageUrl={images?.length > 0 && images[0].url}
+						size={isLoadingData ? null : data.length}
+						owner={owner}
+					/>
+				)}
+				{isLoadingData ? (
+					<div className="flex justify-center items-center">
+						<Loader />
+					</div>
+				) : (
+					<div>
+						<div className="p-6">
+							<div
+								onClick={() =>
+									play({
+										contextUri: uri,
+										offsetPosition: 0,
+									})
+								}
+								className="flex justify-center items-center rounded-full w-16 aspect-square bg-spotify-green hover:cursor-pointer hover:bg-green-400 hover:scale-105"
+							>
+								<FaPlay
+									className="text-spotify-black"
+									size={23}
+								/>
+							</div>
+						</div>
+						<div className="p-6">
+							<PlaylistContents tracks={data} contextUri={uri} />
+						</div>
+					</div>
+				)}
+			</div>
+			{/* <PlaylistDetailed playlist={playlist} /> */}
 		</div>
 	);
 };

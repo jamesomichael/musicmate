@@ -50,7 +50,7 @@ const Player = ({ accessToken }) => {
 		) {
 			const interval = setInterval(() => {
 				setProgress(playbackState.progress_ms);
-			}, 100);
+			}, 5000);
 			return () => clearInterval(interval);
 		}
 	}, [playbackState, isSeeking]);
