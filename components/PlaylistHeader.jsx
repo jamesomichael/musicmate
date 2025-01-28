@@ -64,11 +64,6 @@ const PlaylistHeader = ({ size, name, imageUrl, owner }) => {
 			)}
 		</div>
 	);
-
-	// isLoading ? (
-	// 	<Loader />
-	// ) : (
-	// );
 };
 
 export default PlaylistHeader;
