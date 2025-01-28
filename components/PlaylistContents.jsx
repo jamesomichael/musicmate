@@ -5,6 +5,7 @@ import duration from 'dayjs/plugin/duration';
 import { FaRegClock } from 'react-icons/fa6';
 
 import usePlayerStore from '@/stores/playerStore';
+import Link from 'next/link';
 
 dayjs.extend(duration);
 
@@ -53,9 +54,12 @@ const PlaylistContents = ({ tracks, contextUri }) => {
 								</span>
 							</div>
 						</div>
-						<span className="font-copy text-sm text-gray-300 truncate">
+						<Link
+							href={`/album/${track.album.id}`}
+							className="font-copy text-sm text-gray-300 truncate hover:underline"
+						>
 							{track.album.name}
-						</span>
+						</Link>
 						<span className="font-copy text-gray-300 text-sm">
 							{dayjs().diff(dayjs(addedAt), 'weeks') > 4
 								? dayjs(addedAt).format('D MMM YYYY')
