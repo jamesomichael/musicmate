@@ -36,7 +36,7 @@ const LibraryPanel = ({ accessToken }) => {
 
 	useEffect(() => {
 		if (scrollContainerRef.current) {
-			scrollContainerRef.current.scrollTop = 0; // Reset scroll position to top
+			scrollContainerRef.current.scrollTop = 0;
 		}
 	}, [activeTab]);
 
