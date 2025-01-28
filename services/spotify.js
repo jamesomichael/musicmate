@@ -226,6 +226,53 @@ const fetchPlaylistItems = async (
 	}
 };
 
+const fetchAlbumById = async (id, accessToken) => {
+	console.log('[fetchAlbumById] Fetching album...');
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/albums/${id}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchAlbumById] Album retrieved.');
+		console.log('response.data', response.data);
+		return response.data;
+	} catch (error) {
+		console.error('[fetchAlbumById] Unable to fetch album:', error.message);
+		return false;
+	}
+};
+
+const fetchAlbumTracks = async (
+	albumId,
+	{ limit = 50, offset = 0 },
+	accessToken
+) => {
+	console.log('[fetchAlbumTracks] Fetching album tracks...');
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/albums/${albumId}/tracks?limit=${limit}&offset=${offset}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchAlbumTracks] Album tracks retrieved.');
+		console.log('response.data', response.data);
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchAlbumTracks] Unable to fetch album tracks:',
+			error.message
+		);
+		return false;
+	}
+};
+
 module.exports = {
 	fetchCurrentUser,
 	fetchUserPlaylists,
@@ -237,4 +284,6 @@ module.exports = {
 	play,
 	fetchPlaylistById,
 	fetchPlaylistItems,
+	fetchAlbumById,
+	fetchAlbumTracks,
 };

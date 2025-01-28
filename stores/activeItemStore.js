@@ -26,6 +26,24 @@ const useActiveItemStore = create((set) => {
 			);
 			set({ data: playlistItems, isLoadingData: false });
 		},
+		album: async (id) => {
+			set({
+				metadata: {},
+				data: [],
+				isLoadingMetadata: true,
+				isLoadingData: true,
+			});
+			const accessToken = useAuthStore.getState().accessToken;
+			const { tracks: initialTracks, ...metadata } =
+				await spotifyService.fetchAlbumById(id, accessToken);
+			set({ metadata, isLoadingMetadata: false });
+			const albumTracks = await fetchPaginatedData(
+				spotifyService.fetchAlbumTracks,
+				id,
+				accessToken
+			);
+			set({ data: albumTracks, isLoadingData: false });
+		},
 	};
 	return {
 		isLoadingMetadata: false,
