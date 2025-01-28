@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'next/navigation';
 
 import { FaPlay } from 'react-icons/fa6';
@@ -7,13 +7,19 @@ import { FaPlay } from 'react-icons/fa6';
 import Loader from '@/components/Loader';
 import AlbumHeader from '@/components/AlbumHeader';
 
-import useActiveItemStore from '@/stores/activeItemStore';
+import useAlbum from '@/hooks/useAlbum';
+
+import useAuthStore from '@/stores/authStore';
 import AlbumContents from '@/components/AlbumContents';
 
 const Album = () => {
 	const { id } = useParams();
-	const { setActiveItem, metadata, data, isLoadingMetadata, isLoadingData } =
-		useActiveItemStore();
+	const { accessToken } = useAuthStore();
+
+	const { metadata, data, isLoadingMetadata, isLoadingData } = useAlbum(
+		id,
+		accessToken
+	);
 
 	const {
 		artists,
@@ -23,15 +29,6 @@ const Album = () => {
 		release_date: releaseDate,
 		total_tracks: totalTracks,
 	} = metadata;
-
-	useEffect(() => {
-		if (id) {
-			setActiveItem(id, 'album');
-		}
-	}, [id, setActiveItem]);
-
-	console.log('data', data);
-	console.log('metadata', metadata);
 
 	return (
 		<div className="h-full">
