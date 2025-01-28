@@ -1,31 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Vibrant } from 'node-vibrant/browser';
 
 import Loader from './Loader';
 
+import getDynamicGradient from '@/utils/getDynamicGradient';
+
 const PlaylistHeader = ({ size, name, imageUrl, owner }) => {
-	const [gradient, setGradient] = useState(
-		'linear-gradient(to bottom, #3fbf3f, #3fbf3f)'
-	);
+	const defaultGradient = 'linear-gradient(to bottom, #3fbf3f, #3fbf3f)';
+	const [gradient, setGradient] = useState(defaultGradient);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		if (imageUrl) {
-			Vibrant.from(imageUrl)
-				.getPalette()
-				.then((palette) => {
-					const colourFrom = palette.DarkVibrant.hex;
-					const colourTo = palette.DarkMuted.hex;
-					setGradient(
-						`linear-gradient(to bottom, ${colourFrom}, ${colourTo})`
-					);
-					setIsLoading(false);
-				})
-				.catch((err) => {
-					console.error('Error generating colors:', err.message);
-					setGradient('linear-gradient(to bottom, #3fbf3f, #3fbf3f)');
-					setIsLoading(false);
-				});
+			const generateGradient = async () => {
+				setIsLoading(true);
+				const dynamicGradient = await getDynamicGradient(
+					imageUrl,
+					defaultGradient
+				);
+				setGradient(dynamicGradient);
+				setIsLoading(false);
+			};
+			generateGradient();
 		}
 	}, [imageUrl]);
 
