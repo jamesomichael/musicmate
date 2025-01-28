@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'next/navigation';
 
 import { FaPlay } from 'react-icons/fa6';
@@ -8,18 +8,20 @@ import PlaylistHeader from '@/components/PlaylistHeader';
 import PlaylistContents from '@/components/PlaylistContents';
 import Loader from '@/components/Loader';
 
-import useActiveItemStore from '@/stores/activeItemStore';
+import usePlaylist from '@/hooks/usePlaylist';
+
+import useAuthStore from '@/stores/authStore';
 
 const Playlist = () => {
 	const { id } = useParams();
-	const { metadata, data, setActiveItem, isLoadingMetadata, isLoadingData } =
-		useActiveItemStore();
+	const { accessToken } = useAuthStore();
+
+	const { metadata, data, isLoadingMetadata, isLoadingData } = usePlaylist(
+		id,
+		accessToken
+	);
 
 	const { name: playlistName, uri, images, owner } = metadata;
-
-	useEffect(() => {
-		setActiveItem(id, 'playlist');
-	}, [setActiveItem]);
 
 	return (
 		<div className="h-full">
@@ -64,7 +66,6 @@ const Playlist = () => {
 					</div>
 				)}
 			</div>
-			{/* <PlaylistDetailed playlist={playlist} /> */}
 		</div>
 	);
 };
