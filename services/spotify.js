@@ -269,6 +269,78 @@ const fetchAlbumTracks = async (
 	}
 };
 
+const fetchArtistById = async (id, accessToken) => {
+	console.log('[fetchArtistById] Fetching artist...');
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/artists/${id}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchArtistById] Artist retrieved.');
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchArtistById] Unable to fetch artist:',
+			error.message
+		);
+		return false;
+	}
+};
+
+const fetchArtistAlbums = async (
+	artistId,
+	{ limit = 50, offset = 0 },
+	accessToken
+) => {
+	console.log('[fetchArtistAlbums] Fetching artist albums...');
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/artists/${artistId}/albums?limit=${limit}&offset=${offset}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchArtistAlbums] Artist albums retrieved.');
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchArtistAlbums] Unable to fetch artist albums:',
+			error.message
+		);
+		return false;
+	}
+};
+
+const fetchArtistTopTracks = async (id, accessToken) => {
+	console.log(
+		`[fetchArtistTopTracks] Fetching top tracks for artist ${id}...`
+	);
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/artists/${id}/top-tracks`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[fetchArtistTopTracks] Top tracks retrieved.');
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchArtistTopTracks] Unable to fetch top tracks:',
+			error.message
+		);
+		return false;
+	}
+};
+
 module.exports = {
 	fetchCurrentUser,
 	fetchUserPlaylists,
@@ -282,4 +354,7 @@ module.exports = {
 	fetchPlaylistItems,
 	fetchAlbumById,
 	fetchAlbumTracks,
+	fetchArtistById,
+	fetchArtistAlbums,
+	fetchArtistTopTracks,
 };
