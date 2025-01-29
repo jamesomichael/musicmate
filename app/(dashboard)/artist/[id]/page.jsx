@@ -9,6 +9,8 @@ import useArtist from '@/hooks/useArtist';
 
 import useAuthStore from '@/stores/authStore';
 
+import ArtistTopTracks from '@/components/ArtistTopTracks';
+
 const Artist = () => {
 	const { id } = useParams();
 	const { accessToken } = useAuthStore();
@@ -19,11 +21,11 @@ const Artist = () => {
 	);
 
 	console.error('artist', artist);
-	// console.error('artistAlbums', artistAlbums);
-	// console.error('topTracks', topTracks);
+	console.error('artistAlbums', artistAlbums);
+	console.error('topTracks', topTracks);
 	return (
-		<div className="h-full">
-			<div className="select-none grid grid-rows-[auto,1fr] h-full">
+		<div className="select-none h-full">
+			<div className="grid grid-rows-[auto,1fr]">
 				<div className="h-80">
 					{isLoadingArtist ? (
 						<Loader />
@@ -32,6 +34,14 @@ const Artist = () => {
 							<ArtistHeader artist={artist} />
 						</>
 					)}
+				</div>
+			</div>
+			<div className="flex flex-col gap-2 p-6">
+				<div className="grid grid-cols-2">
+					<ArtistTopTracks topTracks={topTracks} />
+					<div>
+						<Loader />
+					</div>
 				</div>
 			</div>
 		</div>
