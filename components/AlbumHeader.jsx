@@ -1,30 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 
 import Loader from './Loader';
 
-import getDynamicGradient from '@/utils/getDynamicGradient';
+import useDynamicGradient from '@/hooks/useDynamicGradient';
 
 const AlbumHeader = ({ name, artists, imageUrl, releaseDate, totalTracks }) => {
-	const defaultGradient = 'linear-gradient(to bottom, #3fbf3f, #3fbf3f)';
-	const [gradient, setGradient] = useState(defaultGradient);
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		if (imageUrl) {
-			const generateGradient = async () => {
-				setIsLoading(true);
-				const dynamicGradient = await getDynamicGradient(
-					imageUrl,
-					defaultGradient
-				);
-				setGradient(dynamicGradient);
-				setIsLoading(false);
-			};
-			generateGradient();
-		}
-	}, [imageUrl]);
+	const { gradient, isLoading } = useDynamicGradient(imageUrl);
 
 	return (
 		<div className="h-72">
