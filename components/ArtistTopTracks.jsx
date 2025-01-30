@@ -25,12 +25,12 @@ const ArtistTopTracks = ({ topTracks }) => {
 									offsetUri: topTrack.uri,
 								});
 							}}
-							className="rounded hover:bg-neutral-800 h-16 grid grid-cols-[3rem,1fr,5rem] gap-6 items-center"
+							className="rounded hover:bg-neutral-800 h-14 py-2 grid grid-cols-[3rem,1fr,5rem] gap-6 items-center"
 						>
 							<span className="text-right text-gray-300 font-copy text-sm">
 								{i + 1}
 							</span>
-							<div className="h-full py-2 flex gap-2 items-center">
+							<div className="h-full flex gap-2 items-center">
 								<div
 									className="h-full mr-1.5 aspect-square rounded bg-cover bg-center"
 									style={{
