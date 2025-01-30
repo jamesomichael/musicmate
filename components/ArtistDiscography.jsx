@@ -15,9 +15,15 @@ const ArtistDiscography = ({ albums, singles, compilations }) => {
 					Discography
 				</span>
 			</div>
-			<DiscographyCarousel title="albums" data={albums} />
-			<DiscographyCarousel title="singles" data={singles} />
-			<DiscographyCarousel title="compilations" data={compilations} />
+			{albums.length > 0 && (
+				<DiscographyCarousel title="albums" data={albums} />
+			)}
+			{singles.length > 0 && (
+				<DiscographyCarousel title="singles" data={singles} />
+			)}
+			{compilations.length > 0 && (
+				<DiscographyCarousel title="compilations" data={compilations} />
+			)}
 		</div>
 	);
 };
