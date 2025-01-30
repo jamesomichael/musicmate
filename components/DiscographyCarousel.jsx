@@ -10,6 +10,7 @@ const DiscographyCarousel = ({ title, data }) => {
 			</span>
 			<div className="flex overflow-x-auto">
 				{data.map((item) => {
+					const imageUrl = item.images[0]?.url;
 					return (
 						<Link
 							href={`/album/${item.id}`}
@@ -19,7 +20,7 @@ const DiscographyCarousel = ({ title, data }) => {
 							<div
 								className="h-44 aspect-square rounded bg-cover bg-center"
 								style={{
-									backgroundImage: `url(${item.images[0].url})`,
+									backgroundImage: `url(${imageUrl})`,
 								}}
 							></div>
 							<div className="flex flex-col gap-1 w-44">

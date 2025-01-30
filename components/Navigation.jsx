@@ -47,8 +47,8 @@ const Navigation = () => {
 						: 'opacity-50 cursor-not-allowed'
 				}`}
 			/>
-			<Link href="/profile">Profile</Link>
-			<Link href="/login">Login</Link>
+			{/* <Link href="/profile">Profile</Link> */}
+			{/* <Link href="/login">Login</Link> */}
 		</>
 	);
 };
