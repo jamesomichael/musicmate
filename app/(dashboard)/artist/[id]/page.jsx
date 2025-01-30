@@ -16,10 +16,14 @@ const Artist = () => {
 	const { id } = useParams();
 	const { accessToken } = useAuthStore();
 
-	const { artist, artistAlbums, topTracks, isLoadingArtist } = useArtist(
-		id,
-		accessToken
-	);
+	const {
+		artist,
+		artistAlbums,
+		topTracks,
+		isLoadingArtist,
+		isLoadingAlbums,
+		isLoadingTopTracks,
+	} = useArtist(id, accessToken);
 
 	// console.error('artist', artist);
 	// console.error('artistAlbums', artistAlbums);
@@ -48,16 +52,26 @@ const Artist = () => {
 			</div>
 			<div className="flex flex-col gap-8 p-6">
 				<div className="grid grid-cols-2">
-					<ArtistTopTracks topTracks={topTracks} />
+					{isLoadingTopTracks ? (
+						<Loader />
+					) : (
+						<ArtistTopTracks topTracks={topTracks} />
+					)}
 					<div>
 						<Loader />
 					</div>
 				</div>
-				<ArtistDiscography
-					albums={albums}
-					singles={singles}
-					compilations={compilations}
-				/>
+				{isLoadingAlbums ? (
+					<div className="h-52">
+						<Loader />
+					</div>
+				) : (
+					<ArtistDiscography
+						albums={albums}
+						singles={singles}
+						compilations={compilations}
+					/>
+				)}
 			</div>
 		</div>
 	);
