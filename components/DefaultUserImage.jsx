@@ -6,12 +6,12 @@ const DefaultUserImage = ({ displayName, className, onClick }) => {
 	return (
 		<div
 			onClick={onClick}
-			className={`select-none text-black bg-yellow-700 aspect-square h-full rounded-full flex justify-center items-center ${
+			className={`select-none text-black bg-yellow-900 aspect-square h-full rounded-full flex justify-center items-center ${
 				className ? className : ''
 			}`}
 		>
 			{displayName ? (
-				<span className="font-heading font-black">
+				<span className="font-copy text-lg font-bold">
 					{displayName.charAt(0)}
 				</span>
 			) : (
