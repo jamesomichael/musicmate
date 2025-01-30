@@ -5,7 +5,6 @@ import { BiAlbum } from 'react-icons/bi';
 import Link from 'next/link';
 
 const ArtistDiscography = ({ albums, singles, compilations }) => {
-	console.error('albums', albums);
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex justify-start items-center gap-2 text-gray-300">
@@ -39,6 +38,74 @@ const ArtistDiscography = ({ albums, singles, compilations }) => {
 									<span>•</span>
 									<span className="capitalize">
 										{album.album_type}
+									</span>
+								</div>
+							</div>
+						</Link>
+					);
+				})}
+			</div>
+
+			{/* REFACTOR */}
+			<div className="flex overflow-x-auto">
+				{singles.map((single) => {
+					return (
+						<Link
+							href={`/album/${single.id}`}
+							key={single.id}
+							className="grid grid-rows-[auto,1fr] gap-2 p-4 rounded hover:bg-neutral-800"
+						>
+							<div
+								className="h-44 aspect-square rounded bg-cover bg-center"
+								style={{
+									backgroundImage: `url(${single.images[0].url})`,
+								}}
+							></div>
+							<div className="flex flex-col gap-1 w-44">
+								<span className="hover:underline line-clamp-2 font-heading text-sm">
+									{single.name}
+								</span>
+								<div className="flex items-center gap-1 font-copy text-sm text-gray-400">
+									<span>
+										{dayjs(single.release_date).year()}
+									</span>
+									<span>•</span>
+									<span className="capitalize">
+										{single.album_type}
+									</span>
+								</div>
+							</div>
+						</Link>
+					);
+				})}
+			</div>
+
+			{/* REFACTOR */}
+			<div className="flex overflow-x-auto">
+				{compilations.map((compilation) => {
+					return (
+						<Link
+							href={`/album/${compilation.id}`}
+							key={compilation.id}
+							className="grid grid-rows-[auto,1fr] gap-2 p-4 rounded hover:bg-neutral-800"
+						>
+							<div
+								className="h-44 aspect-square rounded bg-cover bg-center"
+								style={{
+									backgroundImage: `url(${compilation.images[0].url})`,
+								}}
+							></div>
+							<div className="flex flex-col gap-1 w-44">
+								<span className="hover:underline line-clamp-2 font-heading text-sm">
+									{compilation.name}
+								</span>
+								<div className="flex items-center gap-1 font-copy text-sm text-gray-400">
+									<span>
+										{dayjs(compilation.release_date).year()}
+									</span>
+									<span>•</span>
+									<span className="capitalize">
+										{compilation.album_type}
 									</span>
 								</div>
 							</div>
