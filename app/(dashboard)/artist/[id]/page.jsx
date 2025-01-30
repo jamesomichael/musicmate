@@ -10,6 +10,7 @@ import useArtist from '@/hooks/useArtist';
 import useAuthStore from '@/stores/authStore';
 
 import ArtistTopTracks from '@/components/ArtistTopTracks';
+import ArtistDiscography from '@/components/ArtistDiscography';
 
 const Artist = () => {
 	const { id } = useParams();
@@ -20,9 +21,18 @@ const Artist = () => {
 		accessToken
 	);
 
-	console.error('artist', artist);
-	console.error('artistAlbums', artistAlbums);
-	console.error('topTracks', topTracks);
+	// console.error('artist', artist);
+	// console.error('artistAlbums', artistAlbums);
+	// console.error('topTracks', topTracks);
+
+	const albums = artistAlbums.filter((album) => album.album_type === 'album');
+	const singles = artistAlbums.filter(
+		(album) => album.album_type === 'single'
+	);
+	const compilations = artistAlbums.filter(
+		(album) => album.album_type === 'compilation'
+	);
+
 	return (
 		<div className="select-none h-full">
 			<div className="grid grid-rows-[auto,1fr]">
@@ -36,13 +46,18 @@ const Artist = () => {
 					)}
 				</div>
 			</div>
-			<div className="flex flex-col gap-2 p-6">
+			<div className="flex flex-col gap-8 p-6">
 				<div className="grid grid-cols-2">
 					<ArtistTopTracks topTracks={topTracks} />
 					<div>
 						<Loader />
 					</div>
 				</div>
+				<ArtistDiscography
+					albums={albums}
+					singles={singles}
+					compilations={compilations}
+				/>
 			</div>
 		</div>
 	);
