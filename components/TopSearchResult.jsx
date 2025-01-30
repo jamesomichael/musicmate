@@ -4,7 +4,9 @@ import Link from 'next/link';
 const TopSearchResult = ({ data }) => {
 	return (
 		<>
-			<span className="font-heading font-bold">Top result</span>
+			<span className="font-heading font-bold text-white">
+				Top result
+			</span>
 			<Link
 				href={`/album/${data.id}`}
 				className="h-64 grid grid-rows-2 gap-2 bg-neutral-900 hover:bg-neutral-800 rounded p-6"
