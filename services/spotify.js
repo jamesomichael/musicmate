@@ -341,6 +341,25 @@ const fetchArtistTopTracks = async (id, accessToken) => {
 	}
 };
 
+const search = async (query, { limit = 50, offset = 0 }, accessToken) => {
+	console.log(`[search] Searching with query ${query}...`);
+	try {
+		const response = await axios.get(
+			`https://api.spotify.com/v1/search?q=${query}&type=album,track,artist,playlist`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log('[search] Search results retrieved.');
+		return response.data;
+	} catch (error) {
+		console.error('[search] Unable to search:', error.message);
+		return false;
+	}
+};
+
 module.exports = {
 	fetchCurrentUser,
 	fetchUserPlaylists,
@@ -357,4 +376,5 @@ module.exports = {
 	fetchArtistById,
 	fetchArtistAlbums,
 	fetchArtistTopTracks,
+	search,
 };
