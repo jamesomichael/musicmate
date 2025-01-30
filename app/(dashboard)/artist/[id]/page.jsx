@@ -25,10 +25,6 @@ const Artist = () => {
 		isLoadingTopTracks,
 	} = useArtist(id, accessToken);
 
-	// console.error('artist', artist);
-	// console.error('artistAlbums', artistAlbums);
-	// console.error('topTracks', topTracks);
-
 	const albums = artistAlbums.filter((album) => album.album_type === 'album');
 	const singles = artistAlbums.filter(
 		(album) => album.album_type === 'single'

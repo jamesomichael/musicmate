@@ -20,7 +20,6 @@ const Search = async ({ searchParams }) => {
 	const tracks = results?.tracks?.items;
 	const artists = results?.artists?.items;
 	const playlists = results?.playlists?.items;
-	// console.error('topResult', topResult);
 	return (
 		<div className="select-none flex flex-col gap-6 p-6">
 			<div className="grid grid-cols-[1fr,2fr] gap-4">
