@@ -18,9 +18,9 @@ const Search = async ({ searchParams }) => {
 	const albums = results?.albums?.items;
 	// console.error('topResult', topResult);
 	return (
-		<div className="flex flex-col gap-0 p-6">
+		<div className="select-none flex flex-col gap-6 p-6">
 			<div className="grid grid-cols-[1fr,2fr] gap-2">
-				<div className="h-64 w-full flex flex-col gap-2">
+				<div className="w-full flex flex-col gap-2">
 					<TopSearchResult data={topResult} />
 				</div>
 				<div>Songs</div>

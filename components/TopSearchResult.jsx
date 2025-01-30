@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 const TopSearchResult = ({ data }) => {
 	return (
-		<div className="h-full">
+		<>
 			<span className="font-heading font-bold">Top result</span>
 			<Link
 				href={`/album/${data.id}`}
-				className="grid grid-rows-2 gap-2 w-full h-full bg-neutral-900 hover:bg-neutral-800 rounded p-6"
+				className="h-64 grid grid-rows-2 gap-2 bg-neutral-900 hover:bg-neutral-800 rounded p-6"
 			>
 				<div
 					className="h-full aspect-square rounded bg-cover bg-center shadow-xl"
@@ -28,7 +28,7 @@ const TopSearchResult = ({ data }) => {
 					</div>
 				</div>
 			</Link>
-		</div>
+		</>
 	);
 };
 
