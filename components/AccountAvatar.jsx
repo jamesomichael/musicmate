@@ -41,7 +41,7 @@ const AccountAvatar = ({ user }) => {
 						<DefaultUserImage
 							onClick={toggleDropdown}
 							displayName={user.display_name}
-							className="outline outline-neutral-700 outline-4 hover:scale-105 hover:cursor-pointer"
+							className="outline outline-neutral-700 outline-2 hover:scale-105 hover:cursor-pointer"
 						/>
 					</div>
 				</>
