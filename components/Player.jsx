@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { transferPlayback, fetchPlaybackState } from '@/services/spotify';
 
 import dayjs from 'dayjs';
@@ -15,6 +16,8 @@ import {
 } from 'react-icons/fa6';
 
 import usePlayerStore from '@/stores/playerStore';
+import FadeInSlide from './FadeInSlide';
+import FadeIn from './FadeIn';
 
 const Player = ({ accessToken }) => {
 	const {
@@ -161,25 +164,37 @@ const Player = ({ accessToken }) => {
 	};
 
 	return playbackState && playbackState.item && isReady ? (
-		<div className="h-full grid grid-rows-[1fr,auto]">
+		<div
+			key={playbackState.item}
+			className="h-full grid grid-rows-[1fr,auto]"
+		>
 			<div className="bg-black px-4 h-20 select-none grid grid-cols-3">
 				<div className="flex gap-2 py-2">
-					<div
-						className="rounded h-full aspect-square bg-center bg-cover"
-						style={{
-							backgroundImage: `url(${playbackState.item.album.images[0].url})`,
-						}}
-					></div>
+					<Link href={`/album/${playbackState.item.album.id}`}>
+						<FadeIn
+							key={playbackState.item.album.images[0].url}
+							className="rounded h-full aspect-square bg-center bg-cover"
+							style={{
+								backgroundImage: `url(${playbackState.item.album.images[0].url})`,
+							}}
+						></FadeIn>
+					</Link>
 					<div className="flex flex-col justify-center w-full">
-						<span className="text-sm font-heading line-clamp-1 leading-6">
+						<FadeInSlide
+							key={playbackState.item.name}
+							href={`/album/${playbackState.item.album.id}`}
+							className="text-sm font-heading line-clamp-1 leading-6"
+						>
 							{playbackState.item.name}
-						</span>
+						</FadeInSlide>
+
 						<div className="flex">
 							{playbackState.item.artists.map(
 								(artist, index, array) => (
-									<div
+									<FadeIn
 										className="font-copy text-xs text-gray-300"
 										key={artist.id}
+										href={`/artist/${artist.id}`}
 									>
 										<span>{artist.name}</span>
 										{index < array.length - 1 && (
@@ -187,7 +202,7 @@ const Player = ({ accessToken }) => {
 												&nbsp;•&nbsp;
 											</span>
 										)}
-									</div>
+									</FadeIn>
 								)
 							)}
 						</div>
