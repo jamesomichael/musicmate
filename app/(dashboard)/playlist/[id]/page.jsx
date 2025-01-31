@@ -21,7 +21,7 @@ const Playlist = () => {
 		accessToken
 	);
 
-	const { name: playlistName, uri, images, owner } = metadata;
+	const { name: playlistName, description, uri, images, owner } = metadata;
 
 	return (
 		<div className="h-full">
@@ -33,6 +33,7 @@ const Playlist = () => {
 				) : (
 					<PlaylistHeader
 						name={playlistName}
+						description={description}
 						imageUrl={images?.length > 0 && images[0].url}
 						size={isLoadingData ? null : data.length}
 						owner={owner}

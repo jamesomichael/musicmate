@@ -1,4 +1,5 @@
 import React from 'react';
+import he from 'he';
 
 import Loader from './Loader';
 import FadeIn from './FadeIn';
@@ -6,7 +7,7 @@ import FadeInSlide from './FadeInSlide';
 
 import useDynamicGradient from '@/hooks/useDynamicGradient';
 
-const PlaylistHeader = ({ size, name, imageUrl, owner }) => {
+const PlaylistHeader = ({ size, description, name, imageUrl, owner }) => {
 	const { gradient, isLoading } = useDynamicGradient(imageUrl);
 
 	return (
@@ -33,14 +34,25 @@ const PlaylistHeader = ({ size, name, imageUrl, owner }) => {
 						>
 							{name}
 						</FadeInSlide>
-						<div className="flex gap-4 text-sm font-copy">
+						{description && (
+							<FadeIn
+								key={description}
+								className="font-copy text-sm text-gray-300"
+							>
+								{he.decode(description)}
+							</FadeIn>
+						)}
+						<div className="flex gap-1.5 text-sm font-copy">
 							<span className="font-medium">
 								{owner.display_name}
 							</span>
 							{size && (
-								<span className="text-gray-300">
-									{size} songs
-								</span>
+								<>
+									<span className="text-gray-300">•</span>
+									<span className="text-gray-300">
+										{size} songs
+									</span>
+								</>
 							)}
 						</div>
 					</div>
