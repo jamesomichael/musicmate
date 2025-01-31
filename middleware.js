@@ -62,5 +62,6 @@ export const config = {
 		'/album/:path*',
 		'/artist/:path*',
 		'/playlist/:path*',
+		'/search/:path*',
 	],
 };
