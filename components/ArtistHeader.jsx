@@ -1,6 +1,9 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 import Loader from './Loader';
+import FadeInSlide from './FadeInSlide';
+import FadeIn from './FadeIn';
 
 import useDynamicGradient from '@/hooks/useDynamicGradient';
 
@@ -15,15 +18,19 @@ const ArtistHeader = ({ artist }) => {
 			className="h-full p-6 grid grid-cols-[auto_1fr] gap-6"
 			style={{ background: gradient }}
 		>
-			<div
+			<FadeIn
+				key={artist.name}
 				className="shadow-xl h-full aspect-square bg-cover bg-center rounded-full"
 				style={{ backgroundImage: `url(${artist.images[0].url})` }}
-			></div>
+			></FadeIn>
 			<div className="flex flex-col justify-end gap-4">
 				<span className="font-copy text-xs">Artist</span>
-				<span className="font-heading font-black text-6xl">
+				<FadeInSlide
+					key={artist.name}
+					className="font-heading font-black text-6xl"
+				>
 					{artist.name}
-				</span>
+				</FadeInSlide>
 				<div className="flex items-center gap-2">
 					<span className="text-sm font-copy">
 						{artist.followers.total.toLocaleString()} followers

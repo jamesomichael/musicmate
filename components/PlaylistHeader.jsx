@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Loader from './Loader';
+import FadeIn from './FadeIn';
+import FadeInSlide from './FadeInSlide';
 
 import useDynamicGradient from '@/hooks/useDynamicGradient';
 
@@ -18,15 +20,19 @@ const PlaylistHeader = ({ size, name, imageUrl, owner }) => {
 						background: gradient,
 					}}
 				>
-					<div
+					<FadeIn
+						key={name}
 						className="h-full aspect-square bg-cover bg-center rounded"
 						style={{ backgroundImage: `url(${imageUrl})` }}
-					></div>
+					></FadeIn>
 					<div className="flex flex-col justify-end gap-4">
 						<span className="font-copy text-xs">Playlist</span>
-						<span className="font-heading text-6xl font-black">
+						<FadeInSlide
+							key={name}
+							className="font-heading text-6xl font-black"
+						>
 							{name}
-						</span>
+						</FadeInSlide>
 						<div className="flex gap-4 text-sm font-copy">
 							<span className="font-medium">
 								{owner.display_name}
