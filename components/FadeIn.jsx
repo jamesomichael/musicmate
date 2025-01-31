@@ -1,10 +1,12 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const FadeIn = ({
 	children,
 	className,
+	href,
 	delay = 0,
 	duration = 0.5,
 	x = 50,
@@ -19,7 +21,13 @@ const FadeIn = ({
 			transition={{ duration, delay }}
 			{...props}
 		>
-			{children}
+			{href ? (
+				<Link className="hover:underline" href={href}>
+					{children}
+				</Link>
+			) : (
+				children
+			)}
 		</motion.div>
 	);
 };
