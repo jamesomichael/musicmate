@@ -299,7 +299,7 @@ const fetchArtistAlbums = async (
 	console.log('[fetchArtistAlbums] Fetching artist albums...');
 	try {
 		const response = await axios.get(
-			`https://api.spotify.com/v1/artists/${artistId}/albums?limit=${limit}&offset=${offset}`,
+			`https://api.spotify.com/v1/artists/${artistId}/albums?limit=${limit}&offset=${offset}&include_groups=album,single,compilation`,
 			{
 				headers: {
 					Authorization: `Bearer ${accessToken}`,

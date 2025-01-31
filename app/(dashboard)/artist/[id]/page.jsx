@@ -30,7 +30,7 @@ const Artist = () => {
 		(album) => album.album_type === 'single'
 	);
 	const compilations = artistAlbums.filter(
-		(album) => album.album_type === 'compilation'
+		(album) => album.album_group === 'compilation'
 	);
 
 	return (
