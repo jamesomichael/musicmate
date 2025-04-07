@@ -8,6 +8,7 @@ const SPOTIFY_SCOPES = [
 	'user-read-playback-state',
 	'user-read-currently-playing',
 	'user-library-read',
+	'user-read-recently-played',
 ];
 
 module.exports = { SPOTIFY_SCOPES };
