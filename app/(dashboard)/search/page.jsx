@@ -31,18 +31,21 @@ const Search = async ({ searchParams }) => {
 				</div>
 			</div>
 			<DiscographyCarousel
+				showCount={false}
 				isSearchResult={true}
 				title="Artists"
 				type="artist"
 				data={artists}
 			/>
 			<DiscographyCarousel
+				showCount={false}
 				isSearchResult={true}
 				title="Albums"
 				type="album"
 				data={albums}
 			/>
 			<DiscographyCarousel
+				showCount={false}
 				isSearchResult={true}
 				title="Playlists"
 				type="playlist"

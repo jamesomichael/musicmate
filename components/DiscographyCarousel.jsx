@@ -2,18 +2,26 @@ import React from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 
-const DiscographyCarousel = ({ isSearchResult = false, title, type, data }) => {
+const DiscographyCarousel = ({
+	isSearchResult = false,
+	showCount = true,
+	title,
+	type,
+	data,
+}) => {
 	return (
 		<div className="flex flex-col gap-1">
-			<span
-				className={`font-heading capitalize ${
-					isSearchResult
-						? 'text-white text-base font-bold'
-						: 'text-neutral-400 text-sm font-semibold'
-				}`}
-			>
-				{title} {!isSearchResult && <>({data.length})</>}
-			</span>
+			{title && (
+				<span
+					className={`font-heading capitalize ${
+						isSearchResult
+							? 'text-white text-base font-bold'
+							: 'text-neutral-400 text-sm font-semibold'
+					}`}
+				>
+					{title} {showCount && <>({data.length})</>}
+				</span>
+			)}
 			<div className="flex overflow-x-auto">
 				{data.map((item) => {
 					if (!item) {
