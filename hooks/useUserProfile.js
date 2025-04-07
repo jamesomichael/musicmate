@@ -4,7 +4,10 @@ import spotifyService from '@/services/spotify';
 const useTopItems = (accessToken) => {
 	const [topTracks, setTopTracks] = useState([]);
 	const [topArtists, setTopArtists] = useState([]);
+	const [recentlyPlayed, setRecentlyPlayed] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isLoadingRecentlyPlayed, setIsLoadingRecentlyPlayed] =
+		useState(true);
 
 	useEffect(() => {
 		const fetchTopItems = async () => {
@@ -21,12 +24,28 @@ const useTopItems = (accessToken) => {
 			setIsLoading(false);
 		};
 
+		const fetchRecentlyPlayed = async () => {
+			setIsLoadingRecentlyPlayed(true);
+			const { items } = await spotifyService.fetchUserRecentlyPlayed(
+				accessToken
+			);
+			setRecentlyPlayed(items);
+			setIsLoadingRecentlyPlayed(false);
+		};
+
 		if (accessToken) {
 			fetchTopItems();
+			fetchRecentlyPlayed();
 		}
 	}, [accessToken]);
 
-	return { isLoading, topTracks, topArtists };
+	return {
+		isLoading,
+		topTracks,
+		topArtists,
+		isLoadingRecentlyPlayed,
+		recentlyPlayed,
+	};
 };
 
 export default useTopItems;
