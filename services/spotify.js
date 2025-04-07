@@ -63,6 +63,30 @@ const fetchUserTopArtists = async (accessToken) => {
 	}
 };
 
+const fetchUserRecentlyPlayed = async (accessToken) => {
+	console.log('[fetchUserRecentlyPlayed] Fetching recently played items...');
+	try {
+		const response = await axios.get(
+			'https://api.spotify.com/v1/me/player/recently-played?limit=50',
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log(
+			'[fetchUserRecentlyPlayed] Recently played items retrieved.'
+		);
+		return response.data;
+	} catch (error) {
+		console.error(
+			'[fetchUserRecentlyPlayed] Unable to fetch recently played items:',
+			error.message
+		);
+		return false;
+	}
+};
+
 const fetchUserPlaylists = async ({ limit = 50, offset = 0 }, accessToken) => {
 	console.log("[fetchUserPlaylists] Fetching the user's playlists...");
 	try {
@@ -409,6 +433,7 @@ module.exports = {
 	fetchUserTopTracks,
 	fetchUserTopArtists,
 	fetchUserPlaylists,
+	fetchUserRecentlyPlayed,
 	fetchUserAlbums,
 	fetchLikedSongs,
 	fetchCategories,
