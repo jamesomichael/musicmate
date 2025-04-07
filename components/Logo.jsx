@@ -13,7 +13,7 @@ const Logo = ({ className, light = false, dark = false }) => {
 		>
 			music
 			<span
-				className={`font-extralight ${
+				className={`font-light ${
 					dark ? 'text-black' : 'text-white'
 				} ${className}`}
 			>
