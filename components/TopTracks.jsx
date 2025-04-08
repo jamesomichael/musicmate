@@ -70,7 +70,7 @@ const TopTracks = ({ data, showArtists = false }) => {
 			})}
 			<span
 				onClick={toggleShowMore}
-				className="mt-1.5 pl-8 select-none font-copy text-sm font-semibold text-gray-300 hover:text-white"
+				className="mt-1.5 pl-8 font-copy text-sm font-semibold text-gray-300 hover:text-white"
 			>
 				{shouldShowMore ? 'Show less' : 'Show more'}
 			</span>

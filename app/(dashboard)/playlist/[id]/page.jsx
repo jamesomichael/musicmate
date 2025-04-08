@@ -25,7 +25,7 @@ const Playlist = () => {
 
 	return (
 		<div className="h-full">
-			<div className="select-none grid grid-rows-[auto,1fr] h-full">
+			<div className="grid grid-rows-[auto,1fr] h-full">
 				{isLoadingMetadata ? (
 					<div className="h-72 flex items-center justify-center">
 						<Loader />

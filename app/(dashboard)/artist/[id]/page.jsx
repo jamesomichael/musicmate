@@ -34,7 +34,7 @@ const Artist = () => {
 	);
 
 	return (
-		<div className="select-none h-full">
+		<div className="h-full">
 			<div className="grid grid-rows-[auto,1fr]">
 				<div className="h-80">
 					{isLoadingArtist ? (

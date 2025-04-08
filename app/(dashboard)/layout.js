@@ -22,7 +22,7 @@ export default async function Layout({ children }) {
 
 	return (
 		<html lang="en">
-			<body className="antialiased overflow-auto min-h-screen h-screen w-full bg-black">
+			<body className="select-none antialiased overflow-auto min-h-screen h-screen w-full bg-black">
 				<div className="flex flex-col max-h-full h-full">
 					{accessToken && user && (
 						<div className="h-14">

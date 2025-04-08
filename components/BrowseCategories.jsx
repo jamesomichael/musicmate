@@ -21,7 +21,7 @@ const BrowseCategories = () => {
 	}, [setCategories, accessToken]);
 
 	return (
-		<div className="select-none overflow-hidden h-full grid grid-rows-[auto_1fr] gap-6">
+		<div className="overflow-hidden h-full grid grid-rows-[auto_1fr] gap-6">
 			<div className="px-8 pt-8 flex flex-col gap-4">
 				<div className="flex justify-start items-center gap-2 text-gray-300">
 					<BiSolidCategory size={30} />

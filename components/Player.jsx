@@ -168,7 +168,7 @@ const Player = ({ accessToken }) => {
 			key={playbackState.item}
 			className="h-full grid grid-rows-[1fr,auto]"
 		>
-			<div className="bg-black px-4 h-20 select-none grid grid-cols-3">
+			<div className="bg-black px-4 h-20 grid grid-cols-3">
 				<div className="flex gap-2 py-2">
 					<Link href={`/album/${playbackState.item.album.id}`}>
 						<FadeIn
@@ -294,7 +294,7 @@ const Player = ({ accessToken }) => {
 	  playbackState.currently_playing_type === 'episode' &&
 	  isReady ? (
 		<>
-			<div className="bg-black px-4 h-20 select-none flex justify-start items-center">
+			<div className="bg-black px-4 h-20 flex justify-start items-center">
 				<span className="font-heading">
 					Podcasts are not supported currently.
 				</span>

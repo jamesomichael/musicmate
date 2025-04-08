@@ -98,7 +98,7 @@ const LibraryPanel = ({ accessToken }) => {
 	const currentTab = tabConfig[activeTab];
 
 	return (
-		<div className="select-none grid grid-rows-[auto_1fr] h-full gap-2">
+		<div className="grid grid-rows-[auto_1fr] h-full gap-2">
 			<div className="px-2 h-24 grid grid-rows-2 justify-start items-center">
 				<div className="flex justify-start items-center gap-2 text-gray-300">
 					<LuSquareLibrary size={28} />

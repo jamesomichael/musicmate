@@ -6,7 +6,7 @@ const DefaultUserImage = ({ displayName, className, onClick }) => {
 	return (
 		<div
 			onClick={onClick}
-			className={`select-none text-black bg-yellow-900 aspect-square h-full rounded-full flex justify-center items-center ${
+			className={`text-black bg-yellow-900 aspect-square h-full rounded-full flex justify-center items-center ${
 				className ? className : ''
 			}`}
 		>

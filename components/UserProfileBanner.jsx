@@ -23,7 +23,7 @@ const UserProfileBanner = () => {
 		</div>
 	) : (
 		<div
-			className="select-none h-full p-6 grid grid-cols-[auto_1fr] gap-6"
+			className="h-full p-6 grid grid-cols-[auto_1fr] gap-6"
 			style={hasProfilePicture ? { background: gradient } : {}}
 		>
 			{hasProfilePicture ? (

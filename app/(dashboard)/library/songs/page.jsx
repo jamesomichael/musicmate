@@ -41,7 +41,7 @@ const Songs = () => {
 	};
 
 	return (
-		<div className="select-none grid grid-rows-[auto,1fr] h-full">
+		<div className="grid grid-rows-[auto,1fr] h-full">
 			<PlaylistHeader
 				name={playlist.metadata.name}
 				imageUrl={playlist.metadata.imageUrl}
