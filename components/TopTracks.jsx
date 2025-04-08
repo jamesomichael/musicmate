@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 
@@ -6,10 +6,15 @@ import usePlayerStore from '@/stores/playerStore';
 
 const TopTracks = ({ data, showArtists = false }) => {
 	const { play } = usePlayerStore();
+	const [shouldShowMore, setShouldShowMore] = useState(false);
+
+	const toggleShowMore = () => {
+		setShouldShowMore((prev) => !prev);
+	};
 
 	return (
 		<div className="flex flex-col">
-			{data.slice(0, 5).map((topTrack, i) => {
+			{data.slice(0, shouldShowMore ? 10 : 5).map((topTrack, i) => {
 				return (
 					<div
 						key={topTrack.id}
@@ -63,6 +68,12 @@ const TopTracks = ({ data, showArtists = false }) => {
 					</div>
 				);
 			})}
+			<span
+				onClick={toggleShowMore}
+				className="mt-1.5 pl-8 select-none font-copy text-sm font-semibold text-gray-300 hover:text-white"
+			>
+				{shouldShowMore ? 'Show less' : 'Show more'}
+			</span>
 		</div>
 	);
 };
