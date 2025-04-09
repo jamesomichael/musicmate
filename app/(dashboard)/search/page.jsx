@@ -22,7 +22,7 @@ const Search = async ({ searchParams }) => {
 	const playlists = results?.playlists?.items;
 	return (
 		<div className="flex flex-col gap-6 p-6">
-			<div className="grid grid-cols-[1fr,2fr] gap-4">
+			<div className="flex flex-col md:grid grid-cols-[1fr,2fr] gap-4">
 				<div className="w-full flex flex-col gap-2">
 					<TopSearchResult data={topResult} />
 				</div>

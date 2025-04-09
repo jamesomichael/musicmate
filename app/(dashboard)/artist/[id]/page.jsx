@@ -47,13 +47,13 @@ const Artist = () => {
 				</div>
 			</div>
 			<div className="flex flex-col gap-8 p-6">
-				<div className="grid grid-cols-2">
+				<div className="grid grid-cols-1 md:grid-cols-2">
 					{isLoadingTopTracks ? (
 						<Loader />
 					) : (
 						<ArtistTopTracks topTracks={topTracks} />
 					)}
-					<div>
+					<div className="hidden md:block">
 						<Loader />
 					</div>
 				</div>

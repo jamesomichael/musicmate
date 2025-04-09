@@ -29,9 +29,9 @@ export default async function Layout({ children }) {
 							<Navbar accessToken={accessToken} user={user} />
 						</div>
 					)}
-					<div className="md:p-0 md:mx-2 md:mb-2 pb-40 flex-1 overflow-hidden">
-						<div className="grid grid-cols-[auto_1fr] h-full gap-2">
-							<div className="bg-spotify-black overflow-hidden h-full w-80 rounded p-2">
+					<div className="md:p-0 md:mx-2 md:mb-2 flex-1 overflow-hidden">
+						<div className="grid grid-cols-[auto_1fr] h-full gap-0 md:gap-2">
+							<div className="hidden md:block bg-spotify-black overflow-hidden h-full w-80 rounded p-2">
 								<LibraryPanel accessToken={accessToken} />
 							</div>
 							<div className="bg-spotify-black overflow-y-scroll h-full rounded">

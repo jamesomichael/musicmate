@@ -21,11 +21,11 @@ const Navbar = ({ accessToken, user }) => {
 	}, [user, setUserData]);
 
 	return (
-		<div className="h-full bg-black grid grid-cols-3 items-center">
-			<div className="p-2 flex justify-start items-center">
+		<div className="h-full bg-black grid grid-cols-2 md:grid-cols-3 items-center">
+			<div className="p-2 hidden md:flex justify-start items-center">
 				<Navigation />
 			</div>
-			<div className="h-full py-2 flex justify-center items-center gap-1">
+			<div className="h-full p-2 flex justify-start md:justify-center items-center gap-1">
 				<HomeButton />
 				<Search />
 				<BrowseButton />
