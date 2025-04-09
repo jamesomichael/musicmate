@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import spotifyService from '@/services/spotify';
 
-const useTopItems = (accessToken) => {
+const useUserProfile = (accessToken) => {
 	const [topTracks, setTopTracks] = useState([]);
 	const [topArtists, setTopArtists] = useState([]);
 	const [recentlyPlayed, setRecentlyPlayed] = useState([]);
@@ -48,4 +48,4 @@ const useTopItems = (accessToken) => {
 	};
 };
 
-export default useTopItems;
+export default useUserProfile;
