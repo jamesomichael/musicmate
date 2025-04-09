@@ -26,7 +26,7 @@ const Search = () => {
 			<input
 				id="search"
 				placeholder="What do you want to play?"
-				className="rounded-full bg-neutral-800 h-full w-10 focus:w-56 md:w-96 pl-11 font-copy text-xs md:text-sm font-medium placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent group-hover:bg-neutral-700"
+				className="transition-all duration-200 rounded-full bg-neutral-800 h-full w-10 focus:w-56 md:focus:w-96 md:w-96 pl-11 font-copy text-xs md:text-sm font-medium placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent group-hover:bg-neutral-700"
 				type="text"
 				onChange={(e) => setQuery(e.target.value)}
 			/>
