@@ -14,14 +14,26 @@ export async function middleware(request) {
 		}
 
 		if (accessToken) {
-			const response = await axios.get('https://api.spotify.com/v1/me', {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			});
+			try {
+				const response = await axios.get(
+					'https://api.spotify.com/v1/me',
+					{
+						headers: {
+							Authorization: `Bearer ${accessToken}`,
+						},
+					}
+				);
 
-			if (response.ok) {
-				return NextResponse.next();
+				if (response.ok) {
+					return NextResponse.next();
+				}
+			} catch (error) {
+				if (error.status === 403) {
+					return NextResponse.redirect(
+						new URL('/unauthorised', request.url)
+					);
+				}
+				throw new Error(error);
 			}
 		}
 
