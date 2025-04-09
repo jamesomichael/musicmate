@@ -1,10 +1,13 @@
 import '../globals.css';
 
+import Footer from '@/components/Footer';
+
 export default function Layout({ children }) {
 	return (
 		<html lang="en">
-			<body className="antialiased overflow-auto min-h-screen h-screen w-full bg-black">
-				{children}
+			<body className="select-none antialiased overflow-auto w-full bg-black">
+				<div className="min-h-screen h-screen">{children}</div>
+				<Footer />
 			</body>
 		</html>
 	);
