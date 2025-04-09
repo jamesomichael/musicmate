@@ -38,15 +38,15 @@ const PlaylistContents = ({ tracks, contextUri }) => {
 						<span className="font-copy text-sm text-right text-gray-300">
 							{index + 1}
 						</span>
-						<div className="flex h-full p-2 gap-2 justify-start items-center">
+						<div className="flex h-full p-2 gap-2 justify-start items-center truncate">
 							<div
 								className="bg-cover bg-center h-full aspect-square rounded"
 								style={{
 									backgroundImage: `url(${track.album.images[0]?.url})`,
 								}}
 							></div>
-							<div className="flex flex-col">
-								<span className="font-heading text-sm text-gray-200">
+							<div className="flex flex-col truncate">
+								<span className="font-heading text-sm text-gray-200 truncate">
 									{track.name}
 								</span>
 								<Link
