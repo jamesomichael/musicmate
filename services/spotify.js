@@ -19,11 +19,11 @@ const fetchCurrentUser = async (accessToken) => {
 	}
 };
 
-const fetchUserTopTracks = async (accessToken) => {
+const fetchUserTopTracks = async ({ period = 'long_term' }, accessToken) => {
 	console.log('[fetchUserTopTracks] Fetching top tracks...');
 	try {
 		const response = await axios.get(
-			'https://api.spotify.com/v1/me/top/tracks?time_range=long_term',
+			`https://api.spotify.com/v1/me/top/tracks?time_range=${period}`,
 			{
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
@@ -41,11 +41,11 @@ const fetchUserTopTracks = async (accessToken) => {
 	}
 };
 
-const fetchUserTopArtists = async (accessToken) => {
+const fetchUserTopArtists = async ({ period = 'long_term' }, accessToken) => {
 	console.log('[fetchUserTopArtists] Fetching top artists...');
 	try {
 		const response = await axios.get(
-			'https://api.spotify.com/v1/me/top/artists?time_range=long_term',
+			`https://api.spotify.com/v1/me/top/artists?time_range=${period}`,
 			{
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
