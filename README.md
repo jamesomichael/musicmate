@@ -6,21 +6,7 @@ musicmate is a web-based Spotify clone built with Next.js and Tailwind CSS. It l
 
 > **Please note**: Access to musicmate is currently by invitation only. Please [get in touch](mailto:musicmate@jamesmichael.dev?subject=Access%20Request) to request access.
 
-![Artist](https://mexhjsdibsoshbepazwt.supabase.co/storage/v1/object/public/musicmate-pub//artist.png)
-
-<table style="width: 100%; height: 100%; border-spacing: 0;">
-  <tr style="height: 100%;">
-    <td style="width: 33.33%; padding: 0; text-align: center;">
-      <img src="https://mexhjsdibsoshbepazwt.supabase.co/storage/v1/object/public/musicmate-pub//album.png" style="width: 100%; height: 100%; object-fit: cover;" />
-    </td>
-    <td style="width: 33.33%; padding: 0; text-align: center;">
-      <img src="https://mexhjsdibsoshbepazwt.supabase.co/storage/v1/object/public/musicmate-pub//search.png" style="width: 100%; height: 100%; object-fit: cover;" />
-    </td>
-    <td style="width: 33.33%; padding: 0; text-align: center;">
-      <img src="https://mexhjsdibsoshbepazwt.supabase.co/storage/v1/object/public/musicmate-pub//playlist.png" style="width: 100%; height: 100%; object-fit: cover;" />
-    </td>
-  </tr>
-</table>
+![Artist](https://mexhjsdibsoshbepazwt.supabase.co/storage/v1/object/public/musicmate-pub//artist-2.png)
 
 ### 🚀 **Features**
 
