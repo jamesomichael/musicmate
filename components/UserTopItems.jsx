@@ -5,13 +5,13 @@ import DiscographyCarousel from '@/components/DiscographyCarousel';
 import Loader from '@/components/Loader';
 import TopTracks from '@/components/TopTracks';
 
-import useUserProfile from '@/hooks/useUserProfile';
+import useUserTopItems from '@/hooks/useUserTopItems';
 
 import useAuthStore from '@/stores/authStore';
 
 const UserTopItems = () => {
 	const { accessToken } = useAuthStore();
-	const { isLoading, topTracks, topArtists } = useUserProfile(accessToken);
+	const { isLoading, topTracks, topArtists } = useUserTopItems(accessToken);
 
 	return isLoading ? (
 		<div className="h-44 flex items-center justify-center">

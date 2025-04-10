@@ -3,14 +3,13 @@ import React, { useMemo } from 'react';
 import DiscographyCarousel from '@/components/DiscographyCarousel';
 import Loader from '@/components/Loader';
 
-import useUserProfile from '@/hooks/useUserProfile';
+import useRecentlyPlayed from '@/hooks/useRecentlyPlayed';
 
 import useAuthStore from '@/stores/authStore';
 
 const RecentlyPlayed = () => {
 	const { accessToken } = useAuthStore();
-	const { isLoadingRecentlyPlayed, recentlyPlayed } =
-		useUserProfile(accessToken);
+	const { isLoading, recentlyPlayed } = useRecentlyPlayed(accessToken);
 
 	const recentlyPlayedAlbums = useMemo(() => {
 		return [
@@ -23,7 +22,7 @@ const RecentlyPlayed = () => {
 		];
 	}, [recentlyPlayed]);
 
-	return isLoadingRecentlyPlayed ? (
+	return isLoading ? (
 		<Loader />
 	) : (
 		<div className="flex flex-col gap-2">
