@@ -6,10 +6,10 @@ import Navigation from './Navigation';
 import Search from './Search';
 import HomeButton from './HomeButton';
 import AccountAvatar from './AccountAvatar';
+import BrowseButton from './BrowseButton';
 
 import useUserStore from '@/stores/userStore';
 import useAuthStore from '@/stores/authStore';
-import BrowseButton from './BrowseButton';
 
 const Navbar = ({ accessToken, user }) => {
 	const { setToken } = useAuthStore();
@@ -21,7 +21,7 @@ const Navbar = ({ accessToken, user }) => {
 	}, [user, setUserData]);
 
 	return (
-		<div className="h-full bg-black grid grid-cols-2 md:grid-cols-3 items-center">
+		<div className="h-full bg-black grid grid-cols-2 md:grid-cols-[1fr,2fr,1fr] items-center">
 			<div className="p-2 hidden md:flex justify-start items-center">
 				<Navigation />
 			</div>
