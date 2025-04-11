@@ -1,21 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import AccountMenu from './AccountMenu';
 import DefaultUserImage from './DefaultUserImage';
 
+import useToggle from '@/hooks/useToggle';
+
 const AccountAvatar = ({ user }) => {
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const {
+		value: isDropdownOpen,
+		toggle: toggleDropdown,
+		setOff: closeDropdown,
+	} = useToggle(false);
 	const dropdownRef = useRef(null);
-	const toggleDropdown = () => {
-		setIsDropdownOpen(!isDropdownOpen);
-	};
 
 	const handleClickOutside = (event) => {
 		if (
 			dropdownRef.current &&
 			!dropdownRef.current.contains(event.target)
 		) {
-			setIsDropdownOpen(false);
+			closeDropdown();
 		}
 	};
 
@@ -30,6 +33,7 @@ const AccountAvatar = ({ user }) => {
 		<div className="h-full relative" ref={dropdownRef}>
 			{user.images?.length > 0 ? (
 				<div
+					onClick={toggleDropdown}
 					className="bg-cover bg-center h-full aspect-square rounded-full outline outline-neutral-700 outline-4 hover:scale-105 hover:cursor-pointer"
 					style={{
 						backgroundImage: `url(${user.images[0].url})`,

@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 
 import usePlayerStore from '@/stores/playerStore';
 
+import useToggle from '@/hooks/useToggle';
+
 const TopTracks = ({ data, showArtists = false }) => {
 	const { play } = usePlayerStore();
-	const [shouldShowMore, setShouldShowMore] = useState(false);
-
-	const toggleShowMore = () => {
-		setShouldShowMore((prev) => !prev);
-	};
+	const { value: shouldShowMore, toggle: toggleShowMore } = useToggle(false);
 
 	return (
 		<div className="flex flex-col">
