@@ -12,7 +12,7 @@ const Search = () => {
 		if (!query.trim()) {
 			return;
 		}
-		router.push(`/search?q=${query}`);
+		router.push(`/search/${query}`);
 	};
 
 	return (
