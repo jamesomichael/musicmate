@@ -5,13 +5,13 @@ import duration from 'dayjs/plugin/duration';
 
 import { FaPlay } from 'react-icons/fa6';
 
-import useLibraryStore from '@/stores/libraryStore';
-import useAuthStore from '@/stores/authStore';
-import useUserStore from '@/stores/userStore';
-
 import Loader from '@/components/Loader';
 import PlaylistHeader from '@/components/PlaylistHeader';
 import PlaylistContents from '@/components/PlaylistContents';
+
+import useLibraryStore from '@/stores/libraryStore';
+import useAuthStore from '@/stores/authStore';
+import useUserStore from '@/stores/userStore';
 
 dayjs.extend(duration);
 

@@ -4,13 +4,12 @@ import React from 'react';
 
 import Loader from '@/components/Loader';
 import ArtistHeader from '@/components/ArtistHeader';
+import ArtistTopTracks from '@/components/ArtistTopTracks';
+import ArtistDiscography from '@/components/ArtistDiscography';
 
 import useArtist from '@/hooks/useArtist';
 
 import useAuthStore from '@/stores/authStore';
-
-import ArtistTopTracks from '@/components/ArtistTopTracks';
-import ArtistDiscography from '@/components/ArtistDiscography';
 
 const Artist = () => {
 	const { id } = useParams();
@@ -40,9 +39,7 @@ const Artist = () => {
 					{isLoadingArtist ? (
 						<Loader />
 					) : (
-						<>
-							<ArtistHeader artist={artist} />
-						</>
+						<ArtistHeader artist={artist} />
 					)}
 				</div>
 			</div>

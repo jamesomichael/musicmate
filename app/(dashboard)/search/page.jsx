@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { cookies } from 'next/headers';
 
 import TopSearchResult from '@/components/TopSearchResult';
@@ -13,6 +12,7 @@ const Search = async ({ searchParams }) => {
 	const query = params.q;
 	const cookieStore = await cookies();
 	const accessToken = cookieStore.get('access_token')?.value;
+
 	const results = await spotifyService.search(query, {}, accessToken);
 
 	const topResult = results?.albums?.items[0];
@@ -20,6 +20,7 @@ const Search = async ({ searchParams }) => {
 	const tracks = results?.tracks?.items;
 	const artists = results?.artists?.items;
 	const playlists = results?.playlists?.items;
+
 	return (
 		<div className="flex flex-col gap-6 p-6">
 			<div className="flex flex-col md:grid grid-cols-[1fr,2fr] gap-4">

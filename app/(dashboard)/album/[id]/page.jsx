@@ -6,11 +6,11 @@ import { FaPlay } from 'react-icons/fa6';
 
 import Loader from '@/components/Loader';
 import AlbumHeader from '@/components/AlbumHeader';
+import AlbumContents from '@/components/AlbumContents';
 
 import useAlbum from '@/hooks/useAlbum';
 
 import useAuthStore from '@/stores/authStore';
-import AlbumContents from '@/components/AlbumContents';
 
 const Album = () => {
 	const { id } = useParams();
