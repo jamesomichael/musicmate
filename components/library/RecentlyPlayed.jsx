@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
-import DiscographyCarousel from '@/components/DiscographyCarousel';
-import Loader from '@/components/Loader';
+import DiscographyCarousel from '../shared/DiscographyCarousel';
+import Loader from '../shared/Loader';
 
 import useRecentlyPlayed from '@/hooks/useRecentlyPlayed';
 

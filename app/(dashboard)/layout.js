@@ -1,9 +1,9 @@
 import '../globals.css';
 import React from 'react';
 import { cookies } from 'next/headers';
-import LibraryPanel from '@/components/LibraryPanel';
-import Navbar from '@/components/Navbar';
-import Player from '@/components/Player';
+import LibraryPanel from '@/components/library/LibraryPanel';
+import Navbar from '@/components/navbar/Navbar';
+import Player from '@/components/player/Player';
 import spotifyService from '@/services/spotify';
 
 export const metadata = {

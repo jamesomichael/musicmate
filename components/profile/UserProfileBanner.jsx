@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
 
-import FadeIn from './FadeIn';
-import FadeInSlide from './FadeInSlide';
-import Loader from './Loader';
+import FadeIn from '../shared/FadeIn';
+import FadeInSlide from '../shared/FadeInSlide';
+import Loader from '../shared/Loader';
 
 import { FaRegUser } from 'react-icons/fa6';
 

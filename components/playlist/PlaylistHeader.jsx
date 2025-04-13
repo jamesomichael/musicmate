@@ -1,9 +1,9 @@
 import React from 'react';
 import he from 'he';
 
-import Loader from './Loader';
-import FadeIn from './FadeIn';
-import FadeInSlide from './FadeInSlide';
+import Loader from '../shared/Loader';
+import FadeIn from '../shared/FadeIn';
+import FadeInSlide from '../shared/FadeInSlide';
 
 import useDynamicGradient from '@/hooks/useDynamicGradient';
 

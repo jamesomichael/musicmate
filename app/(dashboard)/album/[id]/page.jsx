@@ -4,9 +4,9 @@ import { useParams } from 'next/navigation';
 
 import { FaPlay } from 'react-icons/fa6';
 
-import Loader from '@/components/Loader';
-import AlbumHeader from '@/components/AlbumHeader';
-import AlbumContents from '@/components/AlbumContents';
+import Loader from '@/components/shared/Loader';
+import AlbumHeader from '@/components/album/AlbumHeader';
+import AlbumContents from '@/components/album/AlbumContents';
 
 import useAlbum from '@/hooks/useAlbum';
 

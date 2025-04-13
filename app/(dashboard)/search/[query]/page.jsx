@@ -2,10 +2,10 @@
 import React from 'react';
 import { useParams } from 'next/navigation';
 
-import Loader from '@/components/Loader';
-import TopSearchResult from '@/components/TopSearchResult';
-import DiscographyCarousel from '@/components/DiscographyCarousel';
-import SearchResultTracks from '@/components/SearchResultTracks';
+import Loader from '@/components/shared/Loader';
+import TopSearchResult from '@/components/search/TopSearchResult';
+import DiscographyCarousel from '@/components/shared/DiscographyCarousel';
+import SearchResultTracks from '@/components/search/SearchResultTracks';
 
 import useSearch from '@/hooks/useSearch';
 

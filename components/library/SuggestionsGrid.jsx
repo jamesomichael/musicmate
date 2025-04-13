@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import Loader from './Loader';
+import Loader from '../shared/Loader';
 
 import useLibraryStore from '@/stores/libraryStore';
 

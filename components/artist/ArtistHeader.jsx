@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import Loader from './Loader';
-import FadeInSlide from './FadeInSlide';
-import FadeIn from './FadeIn';
+import Loader from '../shared/Loader';
+import FadeInSlide from '../shared/FadeInSlide';
+import FadeIn from '../shared/FadeIn';
 
 import useDynamicGradient from '@/hooks/useDynamicGradient';
 

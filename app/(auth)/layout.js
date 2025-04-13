@@ -1,6 +1,6 @@
 import '../globals.css';
 
-import Footer from '@/components/Footer';
+import Footer from '@/components/shared/Footer';
 
 export default function Layout({ children }) {
 	return (

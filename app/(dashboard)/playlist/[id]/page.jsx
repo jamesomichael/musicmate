@@ -4,9 +4,9 @@ import { useParams } from 'next/navigation';
 
 import { FaPlay } from 'react-icons/fa6';
 
-import PlaylistHeader from '@/components/PlaylistHeader';
-import PlaylistContents from '@/components/PlaylistContents';
-import Loader from '@/components/Loader';
+import PlaylistHeader from '@/components/playlist/PlaylistHeader';
+import PlaylistContents from '@/components/playlist/PlaylistContents';
+import Loader from '@/components/shared/Loader';
 
 import usePlaylist from '@/hooks/usePlaylist';
 

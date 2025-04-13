@@ -3,8 +3,8 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
-import Logo from '@/components/Logo';
-import Footer from '@/components/Footer';
+import Logo from '@/components/shared/Logo';
+import Footer from '@/components/shared/Footer';
 
 import spotifyService from '@/services/spotify';
 import { SPOTIFY_SCOPES } from '@/constants/auth';

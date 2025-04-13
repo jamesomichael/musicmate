@@ -5,7 +5,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import useLibraryStore from '@/stores/libraryStore';
 
 import TabButton from './TabButton';
-import Loader from './Loader';
+import Loader from '../shared/Loader';
 import LibraryPanelListItem from './LibraryPanelListItem';
 
 import { LuSquareLibrary } from 'react-icons/lu';

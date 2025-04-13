@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TopTracks from './TopTracks';
+import TopTracks from '../shared/TopTracks';
 
 import { FaArrowTrendUp } from 'react-icons/fa6';
 

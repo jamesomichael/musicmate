@@ -2,10 +2,10 @@
 import { useParams } from 'next/navigation';
 import React from 'react';
 
-import Loader from '@/components/Loader';
-import ArtistHeader from '@/components/ArtistHeader';
-import ArtistTopTracks from '@/components/ArtistTopTracks';
-import ArtistDiscography from '@/components/ArtistDiscography';
+import Loader from '@/components/shared/Loader';
+import ArtistHeader from '@/components/artist/ArtistHeader';
+import ArtistTopTracks from '@/components/artist/ArtistTopTracks';
+import ArtistDiscography from '@/components/artist/ArtistDiscography';
 
 import useArtist from '@/hooks/useArtist';
 

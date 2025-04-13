@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BrowseCategories from '@/components/BrowseCategories';
+import BrowseCategories from '@/components/categories/BrowseCategories';
 
 const Browse = () => {
 	return <BrowseCategories />;

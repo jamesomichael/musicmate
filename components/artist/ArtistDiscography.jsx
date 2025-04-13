@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { BiAlbum } from 'react-icons/bi';
 import Link from 'next/link';
 
-import DiscographyCarousel from './DiscographyCarousel';
+import DiscographyCarousel from '../shared/DiscographyCarousel';
 
 const ArtistDiscography = ({ albums, singles, compilations }) => {
 	return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import AccountMenu from './AccountMenu';
-import DefaultUserImage from './DefaultUserImage';
+import DefaultUserImage from '../shared/DefaultUserImage';
 
 import useToggle from '@/hooks/useToggle';
 

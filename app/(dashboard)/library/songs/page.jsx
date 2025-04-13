@@ -5,7 +5,7 @@ import duration from 'dayjs/plugin/duration';
 
 import { FaPlay } from 'react-icons/fa6';
 
-import Loader from '@/components/Loader';
+import Loader from '@/components/shared/Loader';
 import PlaylistHeader from '@/components/PlaylistHeader';
 import PlaylistContents from '@/components/PlaylistContents';
 

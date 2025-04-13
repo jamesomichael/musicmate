@@ -16,8 +16,8 @@ import {
 } from 'react-icons/fa6';
 
 import usePlayerStore from '@/stores/playerStore';
-import FadeInSlide from './FadeInSlide';
-import FadeIn from './FadeIn';
+import FadeInSlide from '../shared/FadeInSlide';
+import FadeIn from '../shared/FadeIn';
 
 const Player = ({ accessToken }) => {
 	const {

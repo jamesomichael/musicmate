@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
 
-import UserProfileBanner from '@/components/UserProfileBanner';
-import UserTopItems from '@/components/UserTopItems';
-import RecentlyPlayed from '@/components/RecentlyPlayed';
+import UserProfileBanner from '@/components/profile/UserProfileBanner';
+import UserTopItems from '@/components/library/UserTopItems';
+import RecentlyPlayed from '@/components/library/RecentlyPlayed';
 
 const Profile = () => {
 	return (

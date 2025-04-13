@@ -1,7 +1,7 @@
 'use client';
-import UserTopItems from '@/components/UserTopItems';
-import SuggestionsGrid from '@/components/SuggestionsGrid';
-import RecentlyPlayed from '@/components/RecentlyPlayed';
+import UserTopItems from '@/components/library/UserTopItems';
+import SuggestionsGrid from '@/components/library/SuggestionsGrid';
+import RecentlyPlayed from '@/components/library/RecentlyPlayed';
 
 const Home = () => {
 	return (

@@ -2,10 +2,9 @@
 import React, { useEffect } from 'react';
 
 import Navigation from './Navigation';
-
-import Search from './Search';
+import Search from '../search/Search';
 import HomeButton from './HomeButton';
-import AccountAvatar from './AccountAvatar';
+import AccountAvatar from '../account/AccountAvatar';
 import BrowseButton from './BrowseButton';
 
 import useUserStore from '@/stores/userStore';

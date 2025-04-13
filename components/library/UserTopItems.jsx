@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
 
-import DiscographyCarousel from '@/components/DiscographyCarousel';
-import Loader from '@/components/Loader';
-import TopTracks from '@/components/TopTracks';
+import DiscographyCarousel from '@/components/shared/DiscographyCarousel';
+import Loader from '@/components/shared/Loader';
+import TopTracks from '@/components/shared/TopTracks';
 
 import useUserTopItems from '@/hooks/useUserTopItems';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Logo from '@/components/Logo';
+import Logo from '@/components/shared/Logo';
 import Link from 'next/link';
 
 const Unauthorised = () => {
