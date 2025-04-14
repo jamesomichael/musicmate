@@ -1,21 +1,14 @@
 'use client';
 import React from 'react';
-import { useRouter } from 'next/navigation';
 
 import AccountMenuItem from './AccountMenuItem';
 
 import { TbExternalLink } from 'react-icons/tb';
 
-import useAuthStore from '@/stores/authStore';
+import useLogOut from '@/hooks/useLogOut';
 
 const AccountMenu = ({ closeDropdown }) => {
-	const router = useRouter();
-	const { logOut } = useAuthStore();
-
-	const handleLogOut = () => {
-		logOut();
-		router.push('/login');
-	};
+	const logOut = useLogOut();
 
 	return (
 		<div className="absolute right-0 mt-2.5 w-48 bg-neutral-800 rounded shadow-lg z-[100]">
@@ -36,9 +29,7 @@ const AccountMenu = ({ closeDropdown }) => {
 					Profile
 				</AccountMenuItem>
 				<div className="w-full border-t border-neutral-500"></div>
-				<AccountMenuItem onClick={handleLogOut}>
-					Log out
-				</AccountMenuItem>
+				<AccountMenuItem onClick={logOut}>Log out</AccountMenuItem>
 			</div>
 		</div>
 	);

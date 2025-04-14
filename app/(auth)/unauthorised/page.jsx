@@ -1,20 +1,13 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+
+import useLogOut from '@/hooks/useLogOut';
 
 import Logo from '@/components/shared/Logo';
 
-import useAuthStore from '@/stores/authStore';
-
 const Unauthorised = () => {
-	const router = useRouter();
-	const { logOut } = useAuthStore();
-
-	const handleLogOut = () => {
-		logOut();
-		router.push('/login');
-	};
+	const logOut = useLogOut();
 
 	return (
 		<div className="relative flex justify-center items-center h-full bg-spotify-black">
@@ -46,7 +39,7 @@ const Unauthorised = () => {
 						&nbsp;to request access.
 					</span>
 					<button
-						onClick={handleLogOut}
+						onClick={logOut}
 						className="my-2 hover:bg-opacity-80 bg-white font-copy font-medium text-sm px-10 py-3 text-black rounded"
 					>
 						Log out
