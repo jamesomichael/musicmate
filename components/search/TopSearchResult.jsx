@@ -23,7 +23,7 @@ const TopSearchResult = ({ data }) => {
 					</span>
 					<div className="flex gap-1 items-center text-sm font-copy text-gray-400">
 						<span className="capitalize">{data.album_type}</span>
-						<span className="">•</span>
+						<span>•</span>
 						<Link
 							href={`/artist/${data.artists[0].id}`}
 							className="hover:underline text-white"

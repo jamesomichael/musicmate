@@ -50,15 +50,11 @@ const DiscographyCarousel = ({
 								</span>
 								<div className="flex items-center gap-1 font-copy text-sm text-gray-400">
 									{type === 'artist' ? (
-										<>
-											<span>Artist</span>
-										</>
+										<span>Artist</span>
 									) : type === 'playlist' ? (
-										<>
-											<span>
-												By {item.owner.display_name}
-											</span>
-										</>
+										<span>
+											By {item.owner.display_name}
+										</span>
 									) : (
 										<>
 											<span>

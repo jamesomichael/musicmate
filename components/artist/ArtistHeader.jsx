@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 import Loader from '../shared/Loader';
 import FadeInSlide from '../shared/FadeInSlide';
@@ -9,6 +8,7 @@ import useDynamicGradient from '@/hooks/useDynamicGradient';
 
 const ArtistHeader = ({ artist }) => {
 	const { gradient, isLoading } = useDynamicGradient(artist.images[0].url);
+
 	return isLoading ? (
 		<div className="h-full">
 			<Loader />

@@ -2,8 +2,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
 
-import { FaArrowTrendUp } from 'react-icons/fa6';
-
 import usePlayerStore from '@/stores/playerStore';
 
 const SearchResultTracks = ({ data }) => {
@@ -12,7 +10,6 @@ const SearchResultTracks = ({ data }) => {
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex justify-start items-center gap-2 text-white">
-				{/* <FaArrowTrendUp size={25} /> */}
 				<span className="font-heading font-bold text-base">Songs</span>
 			</div>
 			<div className="flex flex-col">
@@ -44,9 +41,6 @@ const SearchResultTracks = ({ data }) => {
 									{track.name}
 								</span>
 							</div>
-							{/* <span className="justify-self-center"> */}
-							{/* {track.popularity} */}
-							{/* </span> */}
 							<span className="font-copy text-gray-300 text-sm">
 								{dayjs
 									.duration(track.duration_ms, 'milliseconds')

@@ -1,9 +1,10 @@
 import React from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa6';
-import { IoMdMail } from 'react-icons/io';
+import Link from 'next/link';
 
 import Logo from './Logo';
-import Link from 'next/link';
+
+import { FaGithub, FaLinkedin } from 'react-icons/fa6';
+import { IoMdMail } from 'react-icons/io';
 
 const Footer = () => {
 	return (

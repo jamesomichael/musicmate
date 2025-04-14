@@ -55,9 +55,6 @@ const TopTracks = ({ data, showArtists = false }) => {
 								)}
 							</div>
 						</div>
-						{/* <span className="justify-self-center"> */}
-						{/* {topTrack.popularity} */}
-						{/* </span> */}
 						<span className="font-copy text-gray-300 text-sm">
 							{dayjs
 								.duration(topTrack.duration_ms, 'milliseconds')

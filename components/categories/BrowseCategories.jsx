@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 import Loader from '../shared/Loader';
 
-import useAuthStore from '@/stores/authStore';
-
-import useCategoryStore from '@/stores/categoryStore';
 import { BiSolidCategory } from 'react-icons/bi';
 import { IoWarning } from 'react-icons/io5';
+
+import useAuthStore from '@/stores/authStore';
+import useCategoryStore from '@/stores/categoryStore';
 
 const BrowseCategories = () => {
 	const { accessToken } = useAuthStore();

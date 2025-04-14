@@ -18,9 +18,7 @@ const UserProfileBanner = () => {
 	const hasProfilePicture = images?.length > 0;
 
 	return isLoading ? (
-		<div className="h-full">
-			<Loader />
-		</div>
+		<Loader />
 	) : (
 		<div
 			className="h-full p-6 grid grid-cols-[auto_1fr] gap-6"

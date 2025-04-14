@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
@@ -47,8 +46,6 @@ const Navigation = () => {
 						: 'opacity-50 cursor-not-allowed'
 				}`}
 			/>
-			{/* <Link href="/profile">Profile</Link> */}
-			{/* <Link href="/login">Login</Link> */}
 		</>
 	);
 };
