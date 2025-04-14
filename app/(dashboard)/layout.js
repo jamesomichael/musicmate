@@ -44,7 +44,7 @@ export default async function Layout({ children }) {
 					</div>
 					{accessToken && (
 						<div className="fixed bottom-0 md:relative w-full">
-							<Player accessToken={accessToken} />
+							<Player />
 						</div>
 					)}
 				</div>
